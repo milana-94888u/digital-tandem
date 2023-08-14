@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://canxd1tqarbxh"]
+[gd_scene load_steps=5 format=3 uid="uid://canxd1tqarbxh"]
 
 [ext_resource type="Texture2D" uid="uid://b2j6ra684e5lf" path="res://assets/sprites/tiles/tilesheet.png" id="1_kolss"]
+[ext_resource type="PackedScene" uid="uid://bjxrh13ovurni" path="res://src/mech/mech.tscn" id="2_eolc7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rvj33"]
 texture = ExtResource("1_kolss")
@@ -156,6 +157,7 @@ texture_region_size = Vector2i(256, 256)
 5:2/0/terrain_set = 0
 5:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:2/0/physics_layer_0/angular_velocity = 0.0
+5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 128, -128, 128, 128, -128, 128)
 6:2/0 = 0
 6:2/0/terrain_set = 0
 6:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -387,4 +389,7 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array()
+layer_1/tile_data = PackedInt32Array(262143, 327680, 2, 196608, 327680, 2, 196609, 327680, 2, 196610, 327680, 2, 196611, 327680, 2, 196612, 327680, 2, 196613, 327680, 2, 196614, 327680, 2, 196615, 327680, 2, 196616, 327680, 2)
+
+[node name="Mech" parent="." instance=ExtResource("2_eolc7")]
+position = Vector2(845, 27)

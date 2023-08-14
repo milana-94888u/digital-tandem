@@ -4,6 +4,7 @@ extends Node
 signal player_connected(peer_id, player_info)
 signal player_disconnected(peer_id)
 signal server_disconnected
+signal existing_nickname_used
 
 
 const PORT = 7000
@@ -11,9 +12,16 @@ const DEFAULT_SERVER_IP = "127.0.0.1" # IPv4 localhost
 const MAX_CONNECTIONS = 20
 
 
+enum PlayerRole {
+	MECHA = 0,
+	VIRUS = 1,
+	UNSET = 2,
+}
+
+
 var players := {}
 
-var player_info := {"name": "Name"}
+var player_info := {"nickname": "", "role": PlayerRole.UNSET}
 
 
 func _ready() -> void:
@@ -51,6 +59,18 @@ func player_loaded():
 		print("new player!")
 
 
+@rpc("any_peer", "call_local", "reliable")
+func used_existing_nickname() -> void:
+	existing_nickname_used.emit()
+
+
+func check_unique_nickname(nickname: String) -> bool:
+	var result := true
+	for player in players.values():
+		result = result and (player["nickname"] != nickname)
+	return result
+
+
 func _on_player_connected(id: int) -> void:
 	_register_player.rpc_id(id, player_info)
 
@@ -58,6 +78,10 @@ func _on_player_connected(id: int) -> void:
 @rpc("any_peer", "reliable")
 func _register_player(new_player_info: Dictionary) -> void:
 	var new_player_id := multiplayer.get_remote_sender_id()
+	if not check_unique_nickname(new_player_info["nickname"]):
+		used_existing_nickname.rpc_id(new_player_id)
+		multiplayer.multiplayer_peer.disconnect_peer(new_player_id, true)
+		return
 	players[new_player_id] = new_player_info
 	player_connected.emit(new_player_id, new_player_info)
 	
@@ -74,6 +98,7 @@ func _on_connected_ok() -> void:
 
 
 func _on_connected_fail() -> void:
+	print("failed_connect")
 	multiplayer.multiplayer_peer = null
 
 

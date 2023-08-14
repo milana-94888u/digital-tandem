@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcjqvrrxi3f01"]
+
+[ext_resource type="Script" path="res://src/ui/lobby/game_lobby.gd" id="1_pj5b1"]
+
+[node name="GameLobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pj5b1")
+
+[node name="PlayersList" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 603.0
+offset_bottom = 603.0
+
+[node name="ConnectMenu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -603.0
+offset_bottom = 603.0
+grow_horizontal = 0
+
+[node name="NameEdit" type="LineEdit" parent="ConnectMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Enter your name"
+alignment = 1
+
+[node name="ConnectButton" type="Button" parent="ConnectMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Connect"
+
+[node name="CreateServerButton" type="Button" parent="ConnectMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Create server"
+
+[connection signal="pressed" from="ConnectMenu/ConnectButton" to="." method="_on_connect_button_pressed"]
+[connection signal="pressed" from="ConnectMenu/CreateServerButton" to="." method="_on_create_server_button_pressed"]

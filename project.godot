@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Digital Tandem"
-run/main_scene="res://src/world/world.tscn"
+run/main_scene="res://src/ui/lobby/game_lobby.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Lobby="*res://src/multiplayer/lobby.gd"
 
 [display]
 

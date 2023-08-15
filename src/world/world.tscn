@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://canxd1tqarbxh"]
+[gd_scene load_steps=7 format=3 uid="uid://canxd1tqarbxh"]
 
 [ext_resource type="Texture2D" uid="uid://b2j6ra684e5lf" path="res://assets/sprites/tiles/tilesheet.png" id="1_kolss"]
 [ext_resource type="Script" path="res://src/world/world.gd" id="1_uno74"]
+[ext_resource type="PackedScene" uid="uid://bjxrh13ovurni" path="res://src/mech/mech.tscn" id="3_t78es"]
+[ext_resource type="PackedScene" uid="uid://dscy70cidsylo" path="res://src/virus/virus.tscn" id="4_udkkc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rvj33"]
 texture = ExtResource("1_kolss")
@@ -391,6 +393,11 @@ layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(262143, 327680, 2, 196608, 327680, 2, 196609, 327680, 2, 196610, 327680, 2, 196611, 327680, 2, 196612, 327680, 2, 196613, 327680, 2, 196614, 327680, 2, 196615, 327680, 2, 196616, 327680, 2)
+
+[node name="Mech" parent="." instance=ExtResource("3_t78es")]
+speed = 65536
+
+[node name="Virus" parent="." instance=ExtResource("4_udkkc")]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://src/mech/mech.tscn", "res://src/virus/virus.tscn")

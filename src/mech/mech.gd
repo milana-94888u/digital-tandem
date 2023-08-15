@@ -6,8 +6,13 @@ const GRAVITY = Vector2.DOWN * 1024
 @export var speed := 65536
 
 
+@rpc("authority", "call_local", "reliable")
+func change_authority(id: int) -> void:
+	set_multiplayer_authority(id)
+
+
 func _enter_tree() -> void:
-	set_multiplayer_authority(name.to_int())
+#	set_multiplayer_authority(name.to_int())
 	if Server.player_info["role"] == Server.PlayerRole.MECH:
 		$Camera2D.enabled = true
 	else:

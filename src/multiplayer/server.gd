@@ -10,6 +10,11 @@ const DEFAULT_PORT := 7000
 const DEFAULT_IP := "localhost"
 
 
+var players_count := 0
+var mech_authority := 0
+var virus_authority := 0
+
+
 enum PlayerRole {
 	MECH = 0,
 	VIRUS = 1,
@@ -88,15 +93,17 @@ func _register_player(new_player_info: Dictionary) -> void:
 @rpc("any_peer", "call_local", "reliable")
 func player_loaded(player_info: Dictionary):
 	if multiplayer.is_server():
-		var player: Node2D
-		match player_info["role"]:
-			PlayerRole.MECH:
-				player = preload("res://src/mech/mech.tscn").instantiate()
-			PlayerRole.VIRUS:
-				player = preload("res://src/virus/virus.tscn").instantiate()
-		if player:
-			player.name = str(multiplayer.get_remote_sender_id())
-			get_tree().current_scene.call_deferred("add_child", player)
+		var mech := get_tree().current_scene.get_node("Mech")
+		var virus := get_tree().current_scene.get_node("Virus")
+		if player_info["role"] == PlayerRole.MECH:
+			mech_authority = multiplayer.get_remote_sender_id()
+		elif player_info["role"] == PlayerRole.VIRUS:
+			virus_authority = multiplayer.get_remote_sender_id()
+		players_count += 1
+		if players_count == 2:
+			mech.change_authority.rpc(mech_authority)
+			virus.change_authority.rpc(virus_authority)
+			resume_game.rpc()
 
 
 func _connected_ok() -> void:
@@ -106,7 +113,9 @@ func _connected_ok() -> void:
 #	player_connected.emit(peer_id, player_info)
 
 
-
+@rpc("authority", "call_local", "reliable")
+func resume_game() -> void:
+	get_tree().paused = false
 
 
 

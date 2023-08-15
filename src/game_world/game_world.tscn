@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhtehcsatwgxi"]
+[gd_scene load_steps=5 format=3 uid="uid://dhtehcsatwgxi"]
 
 [ext_resource type="TileSet" uid="uid://bmblymegdwmr2" path="res://assets/resources/tilesets/factory_tileset.tres" id="1_ll00b"]
+[ext_resource type="PackedScene" uid="uid://m0txqaij1k45" path="res://src/multiplayer/player_wrapper/player_wrapper.tscn" id="2_3ss46"]
 [ext_resource type="PackedScene" uid="uid://bjxrh13ovurni" path="res://src/mech/mech.tscn" id="2_qi47r"]
+[ext_resource type="PackedScene" uid="uid://dscy70cidsylo" path="res://src/virus/virus.tscn" id="4_78r7y"]
 
 [node name="GameWorld" type="Node2D"]
 
@@ -10,4 +12,13 @@ tile_set = ExtResource("1_ll00b")
 format = 2
 layer_0/tile_data = PackedInt32Array(262143, 0, 2, 196608, 0, 2, 196609, 0, 2, 196610, 0, 2, 196611, 0, 2, 196612, 327680, 2, 196613, 327680, 2, 196614, 0, 2, 196615, 0, 2, 196616, 0, 2, 262152, 327680, 2, 262151, 327680, 2, 262150, 327680, 2, 262149, 327680, 2, 262148, 327680, 2, 262147, 327680, 2, 262146, 327680, 2, 262145, 327680, 2, 262144, 327680, 2, 327679, 327680, 2)
 
-[node name="Mech" parent="." instance=ExtResource("2_qi47r")]
+[node name="MechWrapper" parent="." instance=ExtResource("2_3ss46")]
+position = Vector2(993.832, 648.691)
+
+[node name="Mech" parent="MechWrapper" instance=ExtResource("2_qi47r")]
+position = Vector2(-993.832, -648.691)
+
+[node name="VirusWrapper" parent="." instance=ExtResource("2_3ss46")]
+position = Vector2(993.832, 648.691)
+
+[node name="Virus" parent="VirusWrapper" instance=ExtResource("4_78r7y")]

@@ -255,14 +255,13 @@ properties/3/sync = true
 properties/3/watch = false
 
 [node name="Mech" type="CharacterBody2D"]
-floor_max_angle = 1.5708
 script = ExtResource("1_balh4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-256, -558)
 sprite_frames = SubResource("SpriteFrames_c32uc")
 animation = &"jump"
-frame_progress = 0.192671
+frame_progress = 0.896476
 speed_scale = 2.0
 centered = false
 

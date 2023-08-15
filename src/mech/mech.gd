@@ -10,7 +10,14 @@ extends CharacterBody2D
 @export var gravity := 120
 
 
-func _physics_process(delta: float) -> void:
+func _ready() -> void:
+	if Server.player_info["role"] == Server.PlayerRole.MECH:
+		$Camera2D.enabled = true
+	else:
+		$Camera2D.enabled = false
+
+
+func _physics_process(_delta: float) -> void:
 	var input_direction := Vector2(Input.get_axis("ui_left", "ui_right"), 0.0).normalized()
 	if input_direction != Vector2.ZERO:
 		accelerate(input_direction)

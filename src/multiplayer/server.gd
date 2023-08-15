@@ -45,28 +45,6 @@ func create_game():
 	multiplayer.multiplayer_peer = peer
 
 
-@rpc("any_peer", "call_local", "reliable")
-func player_loaded(new_player_info: Dictionary):
-	if multiplayer.is_server():
-		var mech := get_tree().current_scene.get_node("Mech")
-		var virus := get_tree().current_scene.get_node("Virus")
-		if new_player_info["role"] == PlayerRole.MECH:
-			mech_authority = multiplayer.get_remote_sender_id()
-		elif new_player_info["role"] == PlayerRole.VIRUS:
-			virus_authority = multiplayer.get_remote_sender_id()
-		players_count += 1
-		if players_count == 2:
-			mech.change_authority.rpc(mech_authority)
-			virus.change_authority.rpc(virus_authority)
-			resume_game.rpc()
-
-
-@rpc("authority", "call_local", "reliable")
-func resume_game() -> void:
-	get_tree().paused = false
-
-
-
 
 
 

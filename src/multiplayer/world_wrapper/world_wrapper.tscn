@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://brdhb0niwn1is"]
+
+[ext_resource type="Script" path="res://src/multiplayer/world_wrapper/world_wrapper.gd" id="1_uo3l3"]
+
+[node name="WorldWrapper" type="Node2D"]
+script = ExtResource("1_uo3l3")

@@ -58,6 +58,3 @@ func set_animation() -> void:
 
 
 
-
-
-

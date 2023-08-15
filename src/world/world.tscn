@@ -395,7 +395,6 @@ layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(262143, 327680, 2, 196608, 327680, 2, 196609, 327680, 2, 196610, 327680, 2, 196611, 327680, 2, 196612, 327680, 2, 196613, 327680, 2, 196614, 327680, 2, 196615, 327680, 2, 196616, 327680, 2)
 
 [node name="Mech" parent="." instance=ExtResource("3_t78es")]
-speed = 65536
 
 [node name="Virus" parent="." instance=ExtResource("4_udkkc")]
 

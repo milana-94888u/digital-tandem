@@ -14,6 +14,6 @@ func _enter_tree() -> void:
 		enabled = false
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_multiplayer_authority():
 		position += Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") * 10

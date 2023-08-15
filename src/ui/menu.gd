@@ -1,6 +1,12 @@
 extends Control
 
 
+func _ready() -> void:
+	for arg in OS.get_cmdline_args():
+		if arg == "--server":
+			_on_host_button_pressed()
+
+
 func _on_mecha_button_pressed() -> void:
 	Server.player_info["role"] = Server.PlayerRole.MECH
 	Server.join_game()

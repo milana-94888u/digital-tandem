@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 
-@export var speed := 500
-@export var jump_power := 3000
+@export var speed := 600
+@export var jump_power := 4000
 
 @export var acceleration := 50
 @export var friction := 70
@@ -11,14 +11,17 @@ extends CharacterBody2D
 
 
 func _physics_process(_delta: float) -> void:
+	set_animation()
+	move_and_slide()
+
+
+func _process(_delta: float) -> void:
 	var input_direction := Vector2(Input.get_axis("ui_left", "ui_right"), 0.0).normalized()
 	if input_direction != Vector2.ZERO:
 		accelerate(input_direction)
 	else:
 		add_friction()
 	process_jump()
-	set_animation()
-	move_and_slide()
 
 
 func accelerate(direction) -> void:

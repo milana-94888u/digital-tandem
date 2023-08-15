@@ -261,7 +261,7 @@ script = ExtResource("1_balh4")
 position = Vector2(-256, -558)
 sprite_frames = SubResource("SpriteFrames_c32uc")
 animation = &"jump"
-frame_progress = 0.896476
+frame_progress = 0.645728
 speed_scale = 2.0
 centered = false
 

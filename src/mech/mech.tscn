@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://bjxrh13ovurni"]
+[gd_scene load_steps=38 format=3 uid="uid://bjxrh13ovurni"]
 
 [ext_resource type="Script" path="res://src/mech/mech.gd" id="1_balh4"]
 [ext_resource type="Texture2D" uid="uid://b6dqw0sbs2v2d" path="res://assets/sprites/mech_anims/trooper/Idle.png" id="1_moc5n"]
 [ext_resource type="Texture2D" uid="uid://cna6m26iebxk5" path="res://assets/sprites/mech_anims/trooper/Walk.png" id="1_p2vo6"]
+[ext_resource type="Texture2D" uid="uid://dnnqji0fa202d" path="res://assets/sprites/mech_anims/trooper/Jump.png" id="3_ffrg1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o5833"]
 atlas = ExtResource("1_moc5n")
@@ -42,6 +43,46 @@ region = Rect2(5120, 0, 640, 640)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_860ja"]
 atlas = ExtResource("1_moc5n")
+region = Rect2(5760, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyvaw"]
+atlas = ExtResource("3_ffrg1")
+region = Rect2(0, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r15p0"]
+atlas = ExtResource("3_ffrg1")
+region = Rect2(640, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_334u1"]
+atlas = ExtResource("3_ffrg1")
+region = Rect2(1280, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fl6qf"]
+atlas = ExtResource("3_ffrg1")
+region = Rect2(1920, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqv6p"]
+atlas = ExtResource("3_ffrg1")
+region = Rect2(2560, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6o4t"]
+atlas = ExtResource("3_ffrg1")
+region = Rect2(3200, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6m2rj"]
+atlas = ExtResource("3_ffrg1")
+region = Rect2(3840, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqccu"]
+atlas = ExtResource("3_ffrg1")
+region = Rect2(4480, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogmoa"]
+atlas = ExtResource("3_ffrg1")
+region = Rect2(5120, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lys8"]
+atlas = ExtResource("3_ffrg1")
 region = Rect2(5760, 0, 640, 640)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d6h1u"]
@@ -123,6 +164,41 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_jyvaw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r15p0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_334u1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fl6qf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqv6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6o4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6m2rj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqccu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogmoa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5lys8")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_d6h1u")
 }, {
 "duration": 1.0,
@@ -179,13 +255,14 @@ properties/3/sync = true
 properties/3/watch = false
 
 [node name="Mech" type="CharacterBody2D"]
+floor_max_angle = 1.5708
 script = ExtResource("1_balh4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-256, -558)
 sprite_frames = SubResource("SpriteFrames_c32uc")
-animation = &"idle"
-frame_progress = 0.828983
+animation = &"jump"
+frame_progress = 0.192671
 speed_scale = 2.0
 centered = false
 

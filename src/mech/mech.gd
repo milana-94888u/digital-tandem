@@ -1,56 +1,60 @@
 extends CharacterBody2D
 
 
-const GRAVITY = Vector2.DOWN * 1024
+@export var speed := 500
+@export var jump_power := 3000
 
-@export var speed := 65536
+@export var acceleration := 50
+@export var friction := 70
 
-
-@rpc("authority", "call_local", "reliable")
-func change_authority(id: int) -> void:
-	set_multiplayer_authority(id)
-
-
-func _enter_tree() -> void:
-#	set_multiplayer_authority(name.to_int())
-	if Server.player_info["role"] == Server.PlayerRole.MECH:
-		$Camera2D.enabled = true
-	else:
-		$Camera2D.enabled = false
-
-
-func go_right(delta: float) -> void:
-	$AnimatedSprite2D.play("walk")
-	$AnimatedSprite2D.flip_h = false
-	velocity = Vector2.RIGHT * speed * delta + GRAVITY
-
-
-func go_left(delta: float) -> void:
-	$AnimatedSprite2D.play("walk")
-	$AnimatedSprite2D.flip_h = true
-	velocity = Vector2.LEFT * speed * delta + GRAVITY
-
-
-func move() -> void:
-	move_and_slide()
-
-
-func stay() -> void:
-	$AnimatedSprite2D.play("idle")
+@export var gravity := 120
 
 
 func _physics_process(delta: float) -> void:
-	if not is_multiplayer_authority():
-		return
-
-	if Input.is_action_pressed("ui_right"):
-		go_right(delta)
-		move()
-	elif Input.is_action_pressed("ui_left"):
-		go_left(delta)
-		move()
+	var input_direction := Vector2(Input.get_axis("ui_left", "ui_right"), 0.0).normalized()
+	if input_direction != Vector2.ZERO:
+		accelerate(input_direction)
 	else:
-		stay()
-	if not is_on_floor():
-		velocity = GRAVITY
-		move_and_slide()
+		add_friction()
+	process_jump()
+	set_animation()
+	move_and_slide()
+
+
+func accelerate(direction) -> void:
+	velocity = velocity.move_toward(speed * direction, acceleration)
+
+
+func add_friction() -> void:
+	velocity = velocity.move_toward(Vector2.ZERO, friction)
+
+
+func process_jump() -> void:
+	if Input.is_action_just_pressed("ui_up"):
+		if is_on_floor():
+			velocity.y = -jump_power
+	velocity.y += gravity
+
+
+func set_animation() -> void:
+	if velocity.x < 0:
+		$AnimatedSprite2D.flip_h = true
+	elif velocity.x > 0:
+		$AnimatedSprite2D.flip_h = false
+
+	if is_on_floor():
+		if velocity.x == 0.0:
+			$AnimatedSprite2D.play("idle")
+		else:
+			$AnimatedSprite2D.play("walk")
+	else:
+		$AnimatedSprite2D.play("jump")
+
+
+
+
+
+
+
+
+

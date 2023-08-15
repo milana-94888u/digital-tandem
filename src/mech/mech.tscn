@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bjxrh13ovurni"]
+[gd_scene load_steps=27 format=3 uid="uid://bjxrh13ovurni"]
 
 [ext_resource type="Script" path="res://src/mech/mech.gd" id="1_balh4"]
 [ext_resource type="Texture2D" uid="uid://b6dqw0sbs2v2d" path="res://assets/sprites/mech_anims/trooper/Idle.png" id="1_moc5n"]
@@ -160,6 +160,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkj4a"]
 size = Vector2(256, 480)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5yi8l"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = true
+
 [node name="Mech" type="CharacterBody2D"]
 script = ExtResource("1_balh4")
 
@@ -177,3 +183,10 @@ shape = SubResource("RectangleShape2D_jkj4a")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
+
+[node name="Networking" type="Node" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Networking"]
+root_path = NodePath("../..")
+replication_config = SubResource("SceneReplicationConfig_5yi8l")
+visibility_update_mode = 1

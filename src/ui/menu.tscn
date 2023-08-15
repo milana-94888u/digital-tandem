@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://8wbuueta5skg"]
+
+[ext_resource type="Script" path="res://src/ui/menu.gd" id="1_tmiho"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tmiho")
+
+[node name="MechaButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 194.0
+offset_right = 597.0
+offset_bottom = 605.0
+text = "Mecha"
+
+[node name="VirusButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1013.0
+offset_top = 189.0
+offset_right = 1502.0
+offset_bottom = 600.0
+text = "Virus"
+
+[node name="HostButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 643.0
+offset_top = 620.0
+offset_right = 1132.0
+offset_bottom = 1031.0
+text = "Host"
+
+[connection signal="pressed" from="MechaButton" to="." method="_on_mecha_button_pressed"]
+[connection signal="pressed" from="VirusButton" to="." method="_on_virus_button_pressed"]
+[connection signal="pressed" from="HostButton" to="." method="_on_host_button_pressed"]

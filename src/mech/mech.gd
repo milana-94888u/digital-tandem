@@ -6,6 +6,14 @@ const GRAVITY = Vector2.DOWN * 1024
 @export var speed := 65536
 
 
+func _enter_tree() -> void:
+	set_multiplayer_authority(name.to_int())
+	if Server.player_info["role"] == Server.PlayerRole.MECH:
+		$Camera2D.enabled = true
+	else:
+		$Camera2D.enabled = false
+
+
 func go_right(delta: float) -> void:
 	$AnimatedSprite2D.play("walk")
 	$AnimatedSprite2D.flip_h = false
@@ -27,6 +35,9 @@ func stay() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if not is_multiplayer_authority():
+		return
+
 	if Input.is_action_pressed("ui_right"):
 		go_right(delta)
 		move()

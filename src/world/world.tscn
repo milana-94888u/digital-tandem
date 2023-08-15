@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://canxd1tqarbxh"]
 
 [ext_resource type="Texture2D" uid="uid://b2j6ra684e5lf" path="res://assets/sprites/tiles/tilesheet.png" id="1_kolss"]
-[ext_resource type="PackedScene" uid="uid://bjxrh13ovurni" path="res://src/mech/mech.tscn" id="2_eolc7"]
+[ext_resource type="Script" path="res://src/world/world.gd" id="1_uno74"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rvj33"]
 texture = ExtResource("1_kolss")
@@ -377,6 +377,7 @@ terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_rvj33")
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_uno74")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_tuq72")
@@ -391,5 +392,6 @@ layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(262143, 327680, 2, 196608, 327680, 2, 196609, 327680, 2, 196610, 327680, 2, 196611, 327680, 2, 196612, 327680, 2, 196613, 327680, 2, 196614, 327680, 2, 196615, 327680, 2, 196616, 327680, 2)
 
-[node name="Mech" parent="." instance=ExtResource("2_eolc7")]
-position = Vector2(845, 27)
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://src/mech/mech.tscn", "res://src/virus/virus.tscn")
+spawn_path = NodePath("..")

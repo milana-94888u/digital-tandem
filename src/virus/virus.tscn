@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dscy70cidsylo"]
+
+[ext_resource type="Script" path="res://src/virus/virus.gd" id="1_jlccm"]
+
+[node name="Virus" type="Camera2D"]
+script = ExtResource("1_jlccm")

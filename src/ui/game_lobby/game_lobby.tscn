@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://blyc1n36gv656"]
+[gd_scene load_steps=4 format=3 uid="uid://blyc1n36gv656"]
 
 [ext_resource type="Script" path="res://addons/websocket/WebSocket.gd" id="1_ek0ep"]
 [ext_resource type="Script" path="res://src/ui/game_lobby/game_lobby.gd" id="1_r1w5h"]
+[ext_resource type="Theme" uid="uid://cl2j3s4xbbpfv" path="res://assets/resources/themes/lobby_theme.tres" id="1_x5gda"]
 
 [node name="GameLobby" type="Control"]
 layout_mode = 3
@@ -10,9 +11,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_x5gda")
 script = ExtResource("1_r1w5h")
 
 [node name="LoginScreen" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,12 +39,10 @@ grow_vertical = 2
 
 [node name="NicknameEdit" type="LineEdit" parent="LoginScreen/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
 placeholder_text = "Enter nickname"
 
 [node name="RoleOptionButton" type="OptionButton" parent="LoginScreen/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
 alignment = 1
 item_count = 3
 selected = 0
@@ -54,7 +55,6 @@ popup/item_2/id = 2
 
 [node name="JoinButton" type="Button" parent="LoginScreen/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
 text = "Join"
 
 [node name="ErrorMessageLabel" type="Label" parent="LoginScreen"]
@@ -99,7 +99,6 @@ theme_override_font_sizes/font_size = 60
 text = "Join local game"
 
 [node name="WainitgScreen" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -109,17 +108,48 @@ grow_vertical = 2
 
 [node name="PlayersList" type="VBoxContainer" parent="WainitgScreen"]
 layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_right = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="InviteWindow" type="VBoxContainer" parent="WainitgScreen"]
+visible = false
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -128.0
-offset_top = -256.0
-offset_right = 128.0
-offset_bottom = 256.0
+offset_left = -412.5
+offset_top = -62.5
+offset_right = 412.5
+offset_bottom = 62.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label" type="Label" parent="WainitgScreen/InviteWindow"]
+layout_mode = 2
+text = "Player capybara94888u invites your yo play"
+horizontal_alignment = 1
+
+[node name="Optinos" type="HBoxContainer" parent="WainitgScreen/InviteWindow"]
+layout_mode = 2
+
+[node name="AcceptButton" type="Button" parent="WainitgScreen/InviteWindow/Optinos"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Accept"
+
+[node name="RejectButton" type="Button" parent="WainitgScreen/InviteWindow/Optinos"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Reject"
 
 [node name="WebSocket" type="Node" parent="."]
 script = ExtResource("1_ek0ep")
@@ -127,9 +157,10 @@ host = "localhost:8000"
 use_WSS = false
 
 [node name="HostEdit" type="LineEdit" parent="."]
-offset_left = 113.0
+visible = false
+offset_left = 57.0
 offset_top = 442.0
-offset_right = 622.0
+offset_right = 705.0
 offset_bottom = 505.0
 theme_override_font_sizes/font_size = 40
 text = "localhost:8000"
@@ -138,6 +169,8 @@ alignment = 1
 [connection signal="pressed" from="LoginScreen/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="pressed" from="LoginScreen/LocalGameMenu/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="LoginScreen/LocalGameMenu/JoinLocalButton" to="." method="_on_join_local_button_pressed"]
+[connection signal="pressed" from="WainitgScreen/InviteWindow/Optinos/AcceptButton" to="." method="_on_accept_button_pressed"]
+[connection signal="pressed" from="WainitgScreen/InviteWindow/Optinos/RejectButton" to="." method="_on_reject_button_pressed"]
 [connection signal="closed" from="WebSocket" to="." method="_on_web_socket_closed"]
 [connection signal="connect_failed" from="WebSocket" to="." method="_on_web_socket_connect_failed"]
 [connection signal="connected" from="WebSocket" to="." method="_on_web_socket_connected"]

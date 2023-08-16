@@ -1,6 +1,14 @@
 extends Control
 
 
+var proposer_nickname := ""
+
+
+const unset_icon := preload("res://assets/icons/black-and-white.png")
+const mech_icon := preload("res://assets/icons/mechanical-arm.png")
+const virus_icon := preload("res://assets/icons/virus.png")
+
+
 var nickname_to_button_mapping := {}
 var initial_close_error_occured := false
 
@@ -16,6 +24,8 @@ var initial_close_error_occured := false
 @onready var error_message_label := $LoginScreen/ErrorMessageLabel as Label
 
 @onready var players_list := $WainitgScreen/PlayersList as VBoxContainer
+@onready var invite_window := $WainitgScreen/InviteWindow as VBoxContainer
+@onready var game_propose_label := $WainitgScreen/InviteWindow/Label as Label
 
 
 func switch_to_login_screen() -> void:
@@ -118,6 +128,7 @@ func add_player(player: Dictionary) -> void:
 		return
 
 	var button := Button.new()
+	button.expand_icon = true
 	button.text = player["nickname"]
 	button.pressed.connect(choose_player.bind(button.text))
 	
@@ -125,9 +136,13 @@ func add_player(player: Dictionary) -> void:
 		"mech":
 			if Server.player_info["role"] == Server.PlayerRole.MECH:
 				button.disabled = true
+			button.icon = mech_icon
 		"virus":
 			if Server.player_info["role"] == Server.PlayerRole.VIRUS:
 				button.disabled = true
+			button.icon = virus_icon
+		"unset":
+			button.icon = unset_icon
 	
 	nickname_to_button_mapping[player["nickname"]] = button
 	players_list.add_child(button)
@@ -140,8 +155,9 @@ func remove_player(player: Dictionary) -> void:
 
 
 func choose_player(nickname: String) -> void:
+	players_list.hide()
 	websocket.send_dict({
-		"action": "chose_player",
+		"action": "player_chosen",
 		"nickname": nickname,
 	})
 
@@ -159,12 +175,48 @@ func check_to_connect(player: Dictionary, connection_info: Dictionary) -> void:
 	get_tree().change_scene_to_file("res://src/multiplayer/world_wrapper/world_wrapper.tscn")
 
 
+func disable_player(nickname: String) -> void:
+	if nickname == Server.player_info["nickname"]:
+		return
+
+	var button: Button = nickname_to_button_mapping[nickname]
+	button.disabled = true
+
+
+func enable_player(nickname: String) -> void:
+	if nickname == Server.player_info["nickname"]:
+		return
+
+	var button: Button = nickname_to_button_mapping[nickname]
+	button.disabled = false
+	match Server.player_info["role"]:
+		Server.PlayerRole.MECH:
+			if button.icon == mech_icon:
+				button.disabled = true
+		Server.PlayerRole.VIRUS:
+			if button.icon == virus_icon:
+				button.disabled = true
+
+
 func process_message(message: Dictionary) -> void:
 	match message["action"]:
 		"joined":
 			add_player(message["player"])
 		"left":
 			remove_player(message["player"])
+		"game_suggested":
+			disable_player(message["proposer"])
+			disable_player(message["receiver"])
+			if message["receiver"] == Server.player_info["nickname"]:
+				proposer_nickname = message["proposer"]
+				players_list.hide()
+				game_propose_label.text = "Player %s invites your yo play" % proposer_nickname
+				invite_window.show()
+		"game_rejected":
+			enable_player(message["proposer"])
+			enable_player(message["receiver"])
+			if message["proposer"] == Server.player_info["nickname"]:
+				players_list.show()
 		"room_created":
 			check_to_connect(message["player"], message["connection_info"])
 
@@ -196,3 +248,19 @@ func _on_join_local_button_pressed() -> void:
 
 func _on_host_edit_text_changed(new_text: String) -> void:
 	websocket.host = new_text
+
+
+func _on_accept_button_pressed() -> void:
+	websocket.send_dict({
+		"action": "game_accepted",
+		"nickname": proposer_nickname,
+	})
+
+
+func _on_reject_button_pressed() -> void:
+	websocket.send_dict({
+		"action": "game_rejected",
+		"nickname": proposer_nickname,
+	})
+	players_list.show()
+	invite_window.hide()

@@ -13,7 +13,6 @@ grow_vertical = 2
 script = ExtResource("1_r1w5h")
 
 [node name="LoginScreen" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -75,7 +74,23 @@ text = "Invalid nickname"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HostButton" type="Button" parent="LoginScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -229.5
+offset_top = -91.0
+offset_right = 229.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 60
+text = "Host own game"
+
 [node name="WainitgScreen" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -103,6 +118,7 @@ host = "localhost:8000"
 use_WSS = false
 
 [connection signal="pressed" from="LoginScreen/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="LoginScreen/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="closed" from="WebSocket" to="." method="_on_web_socket_closed"]
 [connection signal="connect_failed" from="WebSocket" to="." method="_on_web_socket_connect_failed"]
 [connection signal="connected" from="WebSocket" to="." method="_on_web_socket_connected"]

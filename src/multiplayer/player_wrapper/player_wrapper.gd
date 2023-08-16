@@ -18,6 +18,7 @@ func _ready() -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func change_authority(id: int) -> void:
+	get_multiplayer_authority()
 	set_multiplayer_authority(id)
 	var is_auth := is_multiplayer_authority()
 	get_child(0).set_process(is_auth)
@@ -25,3 +26,4 @@ func change_authority(id: int) -> void:
 	get_child(0).set_process_shortcut_input(is_auth)
 	get_child(0).set_process_unhandled_input(is_auth)
 	get_child(0).set_process_unhandled_key_input(is_auth)
+	(get_child(0).get_node("UICanvas") as CanvasLayer).visible = is_auth

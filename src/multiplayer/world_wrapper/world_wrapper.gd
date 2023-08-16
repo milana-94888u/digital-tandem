@@ -28,7 +28,7 @@ func player_loaded(new_player_info: Dictionary) -> void:
 
 	if mech_peer and virus_peer:
 		$GameWorld/MechWrapper.change_authority.rpc(mech_peer)
-		$GameWorld/VirusWrapper.change_authority.rpc(mech_peer)
+		$GameWorld/VirusWrapper.change_authority.rpc(virus_peer)
 		resume_game.rpc()
 
 

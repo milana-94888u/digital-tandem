@@ -247,6 +247,7 @@ properties/1/sync = true
 properties/1/watch = false
 
 [node name="Mech" type="CharacterBody2D"]
+input_pickable = true
 script = ExtResource("1_balh4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -270,3 +271,13 @@ zoom = Vector2(0.5, 0.5)
 root_path = NodePath("../..")
 replication_config = SubResource("SceneReplicationConfig_5yi8l")
 visibility_update_mode = 1
+
+[node name="UICanvas" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="UICanvas"]
+offset_left = 509.0
+offset_top = 52.0
+offset_right = 795.0
+offset_bottom = 192.0
+theme_override_font_sizes/font_size = 100
+text = "MECH"

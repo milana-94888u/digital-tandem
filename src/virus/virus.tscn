@@ -4,3 +4,13 @@
 
 [node name="Virus" type="Camera2D"]
 script = ExtResource("1_jlccm")
+
+[node name="UICanvas" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="UICanvas"]
+offset_left = 981.0
+offset_top = 52.0
+offset_right = 1267.0
+offset_bottom = 192.0
+theme_override_font_sizes/font_size = 100
+text = "VIRUS"

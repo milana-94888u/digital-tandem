@@ -54,7 +54,9 @@ func set_animation() -> void:
 		$AnimatedSprite2D.play("jump")
 
 
+func _on_mouse_entered() -> void:
+	modulate = Color.RED
 
 
-
-
+func _on_mouse_exited() -> void:
+	modulate = Color.WHITE

@@ -46,6 +46,8 @@ func _on_join_button_pressed() -> void:
 	if nickname == "":
 		show_error_message("Invalid nickname!")
 		return
+	Server.player_info["nickname"] = nickname
+	Server.player_info["role"] = $LoginScreen/VBoxContainer/RoleOptionButton.selected
 	$WebSocket.route = "/ws/%s/%s" % [nickname, get_string_role()]
 	$WebSocket.connect_socket()
 
@@ -117,11 +119,17 @@ func process_message(message: Dictionary) -> void:
 			remove_player(message["player"])
 
 
+func _ready() -> void:
+	if OS.has_feature("web"):
+		$LoginScreen/HostButton.hide()
+	if "--server" in OS.get_cmdline_args():
+		_on_host_button_pressed()
 
 
-
-
-
+func _on_host_button_pressed() -> void:
+	Server.player_info["role"] = Server.PlayerRole.UNSET
+	get_tree().change_scene_to_file("res://src/multiplayer/world_wrapper/world_wrapper.tscn")
+	Server.create_game()
 
 
 

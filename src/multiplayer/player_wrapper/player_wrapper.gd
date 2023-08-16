@@ -16,7 +16,7 @@ func _ready() -> void:
 		camera.enabled = enabled
 
 
-@rpc("authority", "call_local", "reliable")
+@rpc("any_peer", "call_local", "reliable")
 func change_authority(id: int) -> void:
 	set_multiplayer_authority(id)
 	var is_auth := is_multiplayer_authority()

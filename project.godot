@@ -25,6 +25,10 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="viewport"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/websocket/plugin.cfg")
+
 [input]
 
 zoom_in={

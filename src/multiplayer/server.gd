@@ -1,7 +1,7 @@
 extends Node
 
 
-const DEFAULT_PORT := 7000
+const DEFAULT_PORT := 4444
 const DEFAULT_IP := "localhost"
 
 
@@ -11,30 +11,26 @@ var virus_authority := 0
 
 
 enum PlayerRole {
-	MECH = 0,
-	VIRUS = 1,
-	UNSET = 2,
+	UNSET = 0,
+	MECH = 1,
+	VIRUS = 2,
 }
 
 
 var player_info := {"nickname": "", "role": PlayerRole.UNSET}
 
 
-func check_launched_server() -> bool:
-	for arg in OS.get_cmdline_args():
-		if arg == "--server":
-			return true
-	return false
-
-
-func join_game(address := ""):
-	if address == "":
-		address = DEFAULT_IP
+func join_game(address := DEFAULT_IP, port := DEFAULT_PORT):
 	var peer = ENetMultiplayerPeer.new()
-	var error = peer.create_client(DEFAULT_IP, DEFAULT_PORT)
+	var error = peer.create_client(address, port)
 	if error:
 		return error
 	multiplayer.multiplayer_peer = peer
+	multiplayer.server_disconnected.connect(
+		func():
+			print("-server")
+			get_tree().change_scene_to_file("res://src/ui/menu.tscn")
+	)
 
 
 func create_game():
@@ -43,6 +39,12 @@ func create_game():
 	if error:
 		return error
 	multiplayer.multiplayer_peer = peer
+	multiplayer.peer_disconnected.connect(
+		func(peer: int):
+			print("disconnected %d" % peer)
+			multiplayer.multiplayer_peer.close()
+			get_tree().change_scene_to_file("res://src/ui/menu.tscn")
+	)
 
 
 

@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwm7phorujkav"]
+[gd_scene load_steps=3 format=3 uid="uid://dwm7phorujkav"]
 
+[ext_resource type="Theme" uid="uid://57cmkcqj3sdm" path="res://assets/resources/themes/chat_theme.tres" id="1_4luii"]
 [ext_resource type="Script" path="res://src/ui/game_chat/game_chat.gd" id="1_ytko0"]
 
 [node name="GameChat" type="Control"]
@@ -9,9 +10,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_4luii")
 script = ExtResource("1_ytko0")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -19,4 +21,29 @@ anchor_bottom = 1.0
 offset_top = -512.0
 offset_right = 512.0
 grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CurrentMessage" type="Label" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 8
+autowrap_mode = 3
+
+[connection signal="text_submitted" from="MarginContainer/VBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]

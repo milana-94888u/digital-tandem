@@ -29,3 +29,7 @@ position = Vector2(993.832, 648.691)
 [node name="ChatCanvas" type="CanvasLayer" parent="."]
 
 [node name="GameChat" parent="ChatCanvas" instance=ExtResource("5_o27hs")]
+
+[connection signal="chat_requested" from="MechWrapper/Mech" to="." method="_on_mech_chat_requested"]
+[connection signal="chat_requested" from="VirusWrapper/Virus" to="." method="_on_virus_chat_requested"]
+[connection signal="chat_closed" from="ChatCanvas/GameChat" to="." method="_on_game_chat_chat_closed"]

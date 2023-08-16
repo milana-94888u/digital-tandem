@@ -170,7 +170,6 @@ func process_message(message: Dictionary) -> void:
 
 
 func _ready() -> void:
-	print(get_window().title)
 	if OS.has_feature("web"):
 		$LoginScreen/LocalGameMenu.hide()
 	if "--server" in OS.get_cmdline_args():
@@ -195,8 +194,5 @@ func _on_join_local_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://src/multiplayer/world_wrapper/world_wrapper.tscn")
 
 
-
-
-
-
-
+func _on_host_edit_text_changed(new_text: String) -> void:
+	websocket.host = new_text

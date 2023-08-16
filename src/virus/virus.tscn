@@ -6,6 +6,7 @@
 script = ExtResource("1_jlccm")
 
 [node name="UICanvas" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Label" type="Label" parent="UICanvas"]
 offset_left = 981.0

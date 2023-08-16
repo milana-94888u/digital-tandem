@@ -1,6 +1,12 @@
 extends CharacterBody2D
 
 
+signal chat_requested
+
+
+var control_processed := true
+
+
 @export var speed := 600
 @export var jump_power := 4000
 
@@ -26,7 +32,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func _process(_delta: float) -> void:
-	var input_direction := Vector2(Input.get_axis("ui_left", "ui_right"), 0.0).normalized()
+	var input_direction := Vector2(Input.get_axis("ui_left", "ui_right"), 0.0).normalized() if control_processed else Vector2.ZERO
 	if input_direction != Vector2.ZERO:
 		accelerate(input_direction)
 	else:
@@ -43,7 +49,7 @@ func add_friction() -> void:
 
 
 func process_jump() -> void:
-	if Input.is_action_just_pressed("ui_up"):
+	if control_processed and Input.is_action_just_pressed("ui_up"):
 		if is_on_floor():
 			velocity.y = -jump_power
 	velocity.y += gravity
@@ -70,3 +76,37 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	modulate = Color.WHITE
+
+
+func _input(event: InputEvent) -> void:
+	if not control_processed:
+		return
+	if event.is_action_pressed("ui_chat"):
+		chat_requested.emit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

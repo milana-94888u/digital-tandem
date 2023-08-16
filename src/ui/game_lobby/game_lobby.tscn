@@ -123,8 +123,17 @@ grow_vertical = 2
 
 [node name="WebSocket" type="Node" parent="."]
 script = ExtResource("1_ek0ep")
-host = "1.proxy.hathora.dev:19825"
+host = "localhost:8000"
 use_WSS = false
+
+[node name="HostEdit" type="LineEdit" parent="."]
+offset_left = 113.0
+offset_top = 442.0
+offset_right = 622.0
+offset_bottom = 505.0
+theme_override_font_sizes/font_size = 40
+text = "localhost:8000"
+alignment = 1
 
 [connection signal="pressed" from="LoginScreen/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="pressed" from="LoginScreen/LocalGameMenu/HostButton" to="." method="_on_host_button_pressed"]
@@ -133,3 +142,4 @@ use_WSS = false
 [connection signal="connect_failed" from="WebSocket" to="." method="_on_web_socket_connect_failed"]
 [connection signal="connected" from="WebSocket" to="." method="_on_web_socket_connected"]
 [connection signal="received" from="WebSocket" to="." method="_on_web_socket_received"]
+[connection signal="text_changed" from="HostEdit" to="." method="_on_host_edit_text_changed"]

@@ -57,7 +57,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Join"
 
-[node name="IncorrectNicknameLabel" type="Label" parent="LoginScreen"]
+[node name="ErrorMessageLabel" type="Label" parent="LoginScreen"]
 visible = false
 layout_mode = 1
 anchors_preset = 14
@@ -74,20 +74,29 @@ text = "Invalid nickname"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HostButton" type="Button" parent="LoginScreen"]
+[node name="LocalGameMenu" type="HBoxContainer" parent="LoginScreen"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -229.5
-offset_top = -91.0
-offset_right = 229.5
+offset_left = -454.5
+offset_top = -280.0
+offset_right = 454.5
+offset_bottom = -189.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="HostButton" type="Button" parent="LoginScreen/LocalGameMenu"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Host own game"
+
+[node name="JoinLocalButton" type="Button" parent="LoginScreen/LocalGameMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Join local game"
 
 [node name="WainitgScreen" type="Control" parent="."]
 visible = false
@@ -118,7 +127,8 @@ host = "localhost:8000"
 use_WSS = false
 
 [connection signal="pressed" from="LoginScreen/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
-[connection signal="pressed" from="LoginScreen/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="LoginScreen/LocalGameMenu/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="LoginScreen/LocalGameMenu/JoinLocalButton" to="." method="_on_join_local_button_pressed"]
 [connection signal="closed" from="WebSocket" to="." method="_on_web_socket_closed"]
 [connection signal="connect_failed" from="WebSocket" to="." method="_on_web_socket_connect_failed"]
 [connection signal="connected" from="WebSocket" to="." method="_on_web_socket_connected"]

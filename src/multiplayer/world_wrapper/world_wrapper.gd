@@ -23,10 +23,13 @@ func player_loaded(new_player_info: Dictionary) -> void:
 
 	if new_player_info["role"] == Server.PlayerRole.MECH:
 		mech_peer = multiplayer.get_remote_sender_id()
+		$GameWorld.send_to_chat.rpc("%s the Mech joined" % new_player_info["nickname"])
 	elif new_player_info["role"] == Server.PlayerRole.VIRUS:
 		virus_peer = multiplayer.get_remote_sender_id()
+		$GameWorld.send_to_chat.rpc("%s the Virus joined" % new_player_info["nickname"])
 
 	if mech_peer and virus_peer:
+		$GameWorld.send_to_chat.rpc("Game started")
 		$GameWorld/MechWrapper.change_authority.rpc(mech_peer)
 		$GameWorld/VirusWrapper.change_authority.rpc(virus_peer)
 		resume_game.rpc()

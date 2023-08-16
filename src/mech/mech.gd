@@ -9,6 +9,16 @@ extends CharacterBody2D
 
 @export var gravity := 120
 
+@export var max_health := 100
+@export var health := 100
+
+
+enum AttackType {NONE, MEELE, SHOOT}
+enum MoveType {WALK, RUN, CROACH}
+
+var current_attack := AttackType.NONE
+var current_move := MoveType.WALK
+
 
 func _physics_process(_delta: float) -> void:
 	set_animation()

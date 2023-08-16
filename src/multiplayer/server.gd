@@ -56,7 +56,7 @@ func create_game():
 		func(peer: int):
 			print("disconnected %d" % peer)
 			multiplayer.multiplayer_peer.close()
-			get_tree().change_scene_to_file("res://src/ui/game_lobby/game_lobby.tscn")
+			get_tree().quit()
 	)
 
 

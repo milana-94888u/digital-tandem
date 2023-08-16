@@ -170,6 +170,7 @@ func process_message(message: Dictionary) -> void:
 
 
 func _ready() -> void:
+	print(get_window().title)
 	if OS.has_feature("web"):
 		$LoginScreen/LocalGameMenu.hide()
 	if "--server" in OS.get_cmdline_args():

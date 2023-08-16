@@ -1,0 +1,109 @@
+[gd_scene load_steps=3 format=3 uid="uid://blyc1n36gv656"]
+
+[ext_resource type="Script" path="res://addons/websocket/WebSocket.gd" id="1_ek0ep"]
+[ext_resource type="Script" path="res://src/ui/game_lobby/game_lobby.gd" id="1_r1w5h"]
+
+[node name="GameLobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r1w5h")
+
+[node name="LoginScreen" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoginScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.0
+offset_top = -98.5
+offset_right = 158.0
+offset_bottom = 98.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NicknameEdit" type="LineEdit" parent="LoginScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+placeholder_text = "Enter nickname"
+
+[node name="RoleOptionButton" type="OptionButton" parent="LoginScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+alignment = 1
+item_count = 3
+selected = 0
+popup/item_0/text = "Any role"
+popup/item_0/id = 0
+popup/item_1/text = "Mech"
+popup/item_1/id = 1
+popup/item_2/text = "Virus"
+popup/item_2/id = 2
+
+[node name="JoinButton" type="Button" parent="LoginScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Join"
+
+[node name="IncorrectNicknameLabel" type="Label" parent="LoginScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -440.0
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.247059, 0.117647, 1)
+theme_override_font_sizes/font_size = 80
+text = "Invalid nickname"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WainitgScreen" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayersList" type="VBoxContainer" parent="WainitgScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -256.0
+offset_right = 128.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WebSocket" type="Node" parent="."]
+script = ExtResource("1_ek0ep")
+host = "localhost:8000"
+use_WSS = false
+
+[connection signal="pressed" from="LoginScreen/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="closed" from="WebSocket" to="." method="_on_web_socket_closed"]
+[connection signal="connect_failed" from="WebSocket" to="." method="_on_web_socket_connect_failed"]
+[connection signal="connected" from="WebSocket" to="." method="_on_web_socket_connected"]
+[connection signal="received" from="WebSocket" to="." method="_on_web_socket_received"]

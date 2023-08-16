@@ -1,13 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhtehcsatwgxi"]
+[gd_scene load_steps=5 format=3 uid="uid://dhtehcsatwgxi"]
 
-[ext_resource type="Script" path="res://src/game_world/game_world.gd" id="1_1ymsr"]
 [ext_resource type="TileSet" uid="uid://bmblymegdwmr2" path="res://assets/resources/tilesets/factory_tileset.tres" id="1_ll00b"]
 [ext_resource type="PackedScene" uid="uid://m0txqaij1k45" path="res://src/multiplayer/player_wrapper/player_wrapper.tscn" id="2_3ss46"]
 [ext_resource type="PackedScene" uid="uid://bjxrh13ovurni" path="res://src/mech/mech.tscn" id="2_qi47r"]
 [ext_resource type="PackedScene" uid="uid://dscy70cidsylo" path="res://src/virus/virus.tscn" id="4_78r7y"]
 
 [node name="GameWorld" type="Node2D"]
-script = ExtResource("1_1ymsr")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_ll00b")

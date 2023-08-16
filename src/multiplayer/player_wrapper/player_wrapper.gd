@@ -9,6 +9,7 @@ func _ready() -> void:
 		"Mech":
 			camera = get_child(0).get_node("Camera2D")
 			enabled = Server.player_info["role"] == Server.PlayerRole.MECH
+			(get_child(0) as CharacterBody2D).input_pickable = Server.player_info["role"] == Server.PlayerRole.VIRUS
 		"Virus":
 			camera = get_child(0)
 			enabled = Server.player_info["role"] == Server.PlayerRole.VIRUS

@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://ykqn7mnixe7w"]
+
+[ext_resource type="Texture2D" uid="uid://bm0dmpscb6ssg" path="res://assets/sprites/tiles/tiles/Tile (22).png" id="1_6tuah"]
+[ext_resource type="Script" path="res://src/game_world/objects/conveyor_belt/conveyor_belt.gd" id="1_lewtr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yf7p"]
+atlas = ExtResource("1_6tuah")
+region = Rect2(0, 0, 1024, 256)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4l3oj"]
+size = Vector2(1024, 256)
+
+[node name="ConveyorBelt" type="StaticBody2D"]
+position = Vector2(512, 512)
+script = ExtResource("1_lewtr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_1yf7p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4l3oj")

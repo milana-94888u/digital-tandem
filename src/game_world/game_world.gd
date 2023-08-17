@@ -1,6 +1,11 @@
 extends Node2D
 
 
+func _ready() -> void:
+	pass
+	$MechWrapper/Mech/Camera2D.enabled = true
+
+
 func _on_mech_chat_requested() -> void:
 	$ChatCanvas/GameChat.show_chat()
 	$MechWrapper/Mech.control_processed = false

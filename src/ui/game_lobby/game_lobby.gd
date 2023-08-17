@@ -42,7 +42,7 @@ func switch_to_waiting_screen() -> void:
 func show_error_message(message: String, time := 2.0) -> void:
 	error_message_label.text = message
 	error_message_label.show()
-	get_tree().create_timer(time).timeout.connect(func(): error_message_label.hide())
+	get_tree().create_timer(time).timeout.connect(func(): get_tree().reload_current_scene())
 
 
 func get_valid_nickname() -> String:

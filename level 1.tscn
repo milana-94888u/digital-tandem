@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cj12cl735dqho"]
+[gd_scene load_steps=5 format=3 uid="uid://bnpllad2ddxpt"]
 
 [ext_resource type="Texture2D" uid="uid://ca2cv0u3daf7l" path="res://assets/sprites/mech/png/trooper/Idle__001.png" id="1_5sd27"]
 [ext_resource type="Texture2D" uid="uid://b2j6ra684e5lf" path="res://assets/sprites/tiles/tilesheet.png" id="2_kotxs"]

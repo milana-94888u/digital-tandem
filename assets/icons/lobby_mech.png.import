@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bg1dc58liy6e1"
-path="res://.godot/imported/black-and-white.png-dbcaf5b9d8efeae5870260fd7c83c891.ctex"
+uid="uid://dv165cob5i824"
+path="res://.godot/imported/lobby_mech.png-bcf7a26456d587643a1d24f8daf698aa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icons/black-and-white.png"
-dest_files=["res://.godot/imported/black-and-white.png-dbcaf5b9d8efeae5870260fd7c83c891.ctex"]
+source_file="res://assets/icons/lobby_mech.png"
+dest_files=["res://.godot/imported/lobby_mech.png-bcf7a26456d587643a1d24f8daf698aa.ctex"]
 
 [params]
 

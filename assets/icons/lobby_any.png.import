@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dr0wx3ni3af4n"
-path="res://.godot/imported/mechanical-arm.png-714bb3677cab70935f8ae9bcfa81fd4e.ctex"
+uid="uid://bbjjfllnsxnwt"
+path="res://.godot/imported/lobby_any.png-18723668d42842a32d6b9307fdf3ef27.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icons/mechanical-arm.png"
-dest_files=["res://.godot/imported/mechanical-arm.png-714bb3677cab70935f8ae9bcfa81fd4e.ctex"]
+source_file="res://assets/icons/lobby_any.png"
+dest_files=["res://.godot/imported/lobby_any.png-18723668d42842a32d6b9307fdf3ef27.ctex"]
 
 [params]
 

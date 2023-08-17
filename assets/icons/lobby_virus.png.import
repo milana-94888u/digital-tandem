@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqesd7ppfki4h"
-path="res://.godot/imported/virus.png-465c65fd90edc90372b86be29fbeddd4.ctex"
+uid="uid://clstnq4uc3qcb"
+path="res://.godot/imported/lobby_virus.png-9a1f76f892f740874dbeff3c541a2f7f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icons/virus.png"
-dest_files=["res://.godot/imported/virus.png-465c65fd90edc90372b86be29fbeddd4.ctex"]
+source_file="res://assets/icons/lobby_virus.png"
+dest_files=["res://.godot/imported/lobby_virus.png-9a1f76f892f740874dbeff3c541a2f7f.ctex"]
 
 [params]
 

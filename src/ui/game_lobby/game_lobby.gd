@@ -4,9 +4,9 @@ extends Control
 var proposer_nickname := ""
 
 
-const unset_icon := preload("res://assets/icons/black-and-white.png")
-const mech_icon := preload("res://assets/icons/mechanical-arm.png")
-const virus_icon := preload("res://assets/icons/virus.png")
+const unset_icon := preload("res://assets/icons/lobby_any.png")
+const mech_icon := preload("res://assets/icons/lobby_mech.png")
+const virus_icon := preload("res://assets/icons/lobby_virus.png")
 
 
 var nickname_to_button_mapping := {}

@@ -37,4 +37,14 @@ func _on_virus_minigame_canceled() -> void:
 
 func _on_virus_minigame_completed() -> void:
 	$VirusWrapper/Virus.control_processed = true
-	virus_active_object.open_door.rpc()
+	if virus_active_object is GameObject:
+		virus_active_object.complete_object.rpc()
+	else:
+		virus_active_object.open_door.rpc()
+
+
+func _on_object_chosen(object: GameObject) -> void:
+	$VirusWrapper/Virus.control_processed = false
+	$VirusWrapper/Virus.start_minigame(preload("res://src/minigames/captcha/captcha_minigame.tscn").instantiate())
+	virus_active_object = object
+

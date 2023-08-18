@@ -4,6 +4,9 @@ class_name Virus
 
 signal chat_requested
 
+signal minigame_completed
+signal minigame_canceled
+
 
 var control_processed := true
 
@@ -29,6 +32,15 @@ func _input(event: InputEvent) -> void:
 		chat_requested.emit()
 
 
+func finish_minigame(minigame: Minigame, result: Signal) -> void:
+	$UICanvas.remove_child(minigame)
+	result.emit()
+
+
+func start_minigame(minigame: Minigame) -> void:
+	$UICanvas.add_child(minigame)
+	minigame.completed.connect(finish_minigame.bind(minigame, minigame_completed))
+	minigame.canceled.connect(finish_minigame.bind(minigame, minigame_canceled))
 
 
 

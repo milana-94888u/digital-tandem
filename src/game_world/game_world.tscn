@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhtehcsatwgxi"]
+[gd_scene load_steps=8 format=3 uid="uid://dhtehcsatwgxi"]
 
 [ext_resource type="Script" path="res://src/game_world/game_world.gd" id="1_1ymsr"]
 [ext_resource type="TileSet" uid="uid://bmblymegdwmr2" path="res://assets/resources/tilesets/factory_tileset.tres" id="1_ll00b"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bjxrh13ovurni" path="res://src/mech/mech.tscn" id="2_qi47r"]
 [ext_resource type="PackedScene" uid="uid://dscy70cidsylo" path="res://src/virus/virus.tscn" id="4_78r7y"]
 [ext_resource type="PackedScene" uid="uid://dwm7phorujkav" path="res://src/ui/game_chat/game_chat.tscn" id="5_o27hs"]
+[ext_resource type="PackedScene" uid="uid://crmv3gq66sdew" path="res://src/game_world/objects/door.tscn" id="7_ieemi"]
 
 [node name="GameWorld" type="Node2D"]
 script = ExtResource("1_1ymsr")
@@ -13,7 +14,22 @@ script = ExtResource("1_1ymsr")
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_ll00b")
 format = 2
-layer_0/tile_data = PackedInt32Array(262143, 0, 2, 196608, 0, 2, 196609, 0, 2, 196610, 0, 2, 196611, 0, 2, 196614, 0, 2, 196615, 0, 2, 196616, 0, 2, 262152, 327680, 2, 262151, 327680, 2, 262150, 327680, 2, 262149, 327680, 2, 262148, 327680, 2, 262147, 327680, 2, 262146, 327680, 2, 262145, 327680, 2, 262144, 327680, 2, 327679, 327680, 2, 262142, 3, 1, 262141, 3, 1, 262140, 3, 1, 262139, 3, 0, 196602, 3, 6, 131065, 3, 6, 196612, 3, 0, 196613, 3, 2, 196617, 3, 3, 196618, 3, 4, 196619, 3, 4, 196620, 3, 5, 131085, 3, 3, 131086, 3, 5, 65551, 3, 7)
+layer_0/name = "backgound"
+layer_0/tile_data = PackedInt32Array(262140, 0, 0, 196604, 0, 0, 131068, 0, 0, 65532, 0, 0, 65534, 0, 0, 131070, 0, 0, 196606, 0, 0, 262142, 0, 0, 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 2, 0, 0, 65538, 0, 0, 131074, 0, 0, 196610, 0, 0, 4, 0, 0, 65540, 0, 0, 131076, 0, 0, 196612, 0, 0, 6, 0, 0, 65542, 0, 0, 131078, 0, 0, 196614, 0, 0, 65533, 65536, 0, 131069, 65536, 0, 196605, 65536, 0, 262141, 65536, 0, 65535, 65536, 0, 131071, 65536, 0, 196607, 65536, 0, 262143, 65536, 0, 1, 65536, 0, 65537, 65536, 0, 131073, 65536, 0, 196609, 65536, 0, 3, 65536, 0, 65539, 65536, 0, 131075, 65536, 0, 196611, 65536, 0, 5, 65536, 0, 65541, 65536, 0, 131077, 65536, 0, 196613, 65536, 0)
+layer_1/name = "floor"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array(327676, 327680, 0, 327677, 393216, 0, 327678, 393216, 0, 327679, 393216, 0, 262144, 393216, 0, 262145, 393216, 0, 262146, 393216, 0, 262147, 393216, 0, 262148, 393216, 0, 262149, 393216, 0, 262150, 458752, 0)
+layer_2/name = "walls"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = false
+layer_2/y_sort_origin = 0
+layer_2/z_index = 0
+layer_2/tile_data = PackedInt32Array(262140, 262144, 1, 131068, 262144, 1, 65532, 262144, 0, 196604, 262144, 0)
 
 [node name="MechWrapper" parent="." instance=ExtResource("2_3ss46")]
 position = Vector2(993.832, 648.691)
@@ -31,6 +47,12 @@ visible = false
 
 [node name="GameChat" parent="ChatCanvas" instance=ExtResource("5_o27hs")]
 
+[node name="Door" parent="." instance=ExtResource("7_ieemi")]
+position = Vector2(1679, 536)
+
 [connection signal="chat_requested" from="MechWrapper/Mech" to="." method="_on_mech_chat_requested"]
 [connection signal="chat_requested" from="VirusWrapper/Virus" to="." method="_on_virus_chat_requested"]
+[connection signal="minigame_canceled" from="VirusWrapper/Virus" to="." method="_on_virus_minigame_canceled"]
+[connection signal="minigame_completed" from="VirusWrapper/Virus" to="." method="_on_virus_minigame_completed"]
 [connection signal="chat_closed" from="ChatCanvas/GameChat" to="." method="_on_game_chat_chat_closed"]
+[connection signal="object_chosen" from="Door" to="." method="_on_door_object_chosen"]

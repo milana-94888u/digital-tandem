@@ -16,8 +16,6 @@ func _ready() -> void:
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
 	if captcha == new_text:
-		$MistakeLabel.text = "Correct!"
-		$MistakeLabel.show()
 		completed.emit()
 	else:
 		$MistakeLabel.show()

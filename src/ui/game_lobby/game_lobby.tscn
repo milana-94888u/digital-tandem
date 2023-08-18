@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://addons/websocket/WebSocket.gd" id="1_ek0ep"]
 [ext_resource type="Script" path="res://src/ui/game_lobby/game_lobby.gd" id="1_r1w5h"]
-[ext_resource type="Theme" uid="uid://cl2j3s4xbbpfv" path="res://assets/resources/themes/lobby_theme.tres" id="1_x5gda"]
+[ext_resource type="Theme" uid="uid://cl2j3s4xbbpfv" path="res://resources/themes/lobby_theme.tres" id="1_x5gda"]
 
 [node name="GameLobby" type="Control"]
 layout_mode = 3

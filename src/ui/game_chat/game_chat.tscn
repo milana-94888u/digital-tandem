@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwm7phorujkav"]
 
-[ext_resource type="Theme" uid="uid://57cmkcqj3sdm" path="res://assets/resources/themes/chat_theme.tres" id="1_4luii"]
+[ext_resource type="Theme" uid="uid://57cmkcqj3sdm" path="res://resources/themes/chat_theme.tres" id="1_4luii"]
 [ext_resource type="Script" path="res://src/ui/game_chat/game_chat.gd" id="1_ytko0"]
 
 [node name="GameChat" type="Control"]

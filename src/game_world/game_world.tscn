@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://dhtehcsatwgxi"]
 
 [ext_resource type="Script" path="res://src/game_world/game_world.gd" id="1_1ymsr"]
-[ext_resource type="TileSet" uid="uid://bmblymegdwmr2" path="res://assets/resources/tilesets/factory_tileset.tres" id="1_ll00b"]
 [ext_resource type="PackedScene" uid="uid://m0txqaij1k45" path="res://src/multiplayer/player_wrapper/player_wrapper.tscn" id="2_3ss46"]
 [ext_resource type="PackedScene" uid="uid://bjxrh13ovurni" path="res://src/mech/mech.tscn" id="2_qi47r"]
+[ext_resource type="TileSet" uid="uid://bmblymegdwmr2" path="res://resources/tilesets/factory_tileset.tres" id="2_sg1io"]
 [ext_resource type="PackedScene" uid="uid://dscy70cidsylo" path="res://src/virus/virus.tscn" id="4_78r7y"]
 [ext_resource type="PackedScene" uid="uid://dwm7phorujkav" path="res://src/ui/game_chat/game_chat.tscn" id="5_o27hs"]
 [ext_resource type="PackedScene" uid="uid://crmv3gq66sdew" path="res://src/game_world/objects/door.tscn" id="7_ieemi"]
@@ -12,7 +12,7 @@
 script = ExtResource("1_1ymsr")
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource("1_ll00b")
+tile_set = ExtResource("2_sg1io")
 format = 2
 layer_0/name = "backgound"
 layer_0/tile_data = PackedInt32Array(262140, 0, 0, 196604, 0, 0, 131068, 0, 0, 65532, 0, 0, 65534, 0, 0, 131070, 0, 0, 196606, 0, 0, 262142, 0, 0, 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 2, 0, 0, 65538, 0, 0, 131074, 0, 0, 196610, 0, 0, 4, 0, 0, 65540, 0, 0, 131076, 0, 0, 196612, 0, 0, 6, 0, 0, 65542, 0, 0, 131078, 0, 0, 196614, 0, 0, 65533, 65536, 0, 131069, 65536, 0, 196605, 65536, 0, 262141, 65536, 0, 65535, 65536, 0, 131071, 65536, 0, 196607, 65536, 0, 262143, 65536, 0, 1, 65536, 0, 65537, 65536, 0, 131073, 65536, 0, 196609, 65536, 0, 3, 65536, 0, 65539, 65536, 0, 131075, 65536, 0, 196611, 65536, 0, 5, 65536, 0, 65541, 65536, 0, 131077, 65536, 0, 196613, 65536, 0)
@@ -48,7 +48,7 @@ visible = false
 [node name="GameChat" parent="ChatCanvas" instance=ExtResource("5_o27hs")]
 
 [node name="Door" parent="." instance=ExtResource("7_ieemi")]
-position = Vector2(1679, 536)
+position = Vector2(1669, 792)
 
 [connection signal="chat_requested" from="MechWrapper/Mech" to="." method="_on_mech_chat_requested"]
 [connection signal="chat_requested" from="VirusWrapper/Virus" to="." method="_on_virus_chat_requested"]

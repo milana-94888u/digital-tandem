@@ -1,4 +1,5 @@
 extends Camera2D
+class_name Virus
 
 
 signal chat_requested

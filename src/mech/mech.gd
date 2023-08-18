@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Mech
 
 
 signal chat_requested

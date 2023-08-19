@@ -2,6 +2,9 @@ extends CharacterBody2D
 class_name Mech
 
 
+var active_door: FrontDoor
+
+
 signal chat_requested
 
 
@@ -87,9 +90,18 @@ func _input(event: InputEvent) -> void:
 		return
 	if event.is_action_pressed("ui_chat"):
 		chat_requested.emit()
+	elif event.is_action_pressed("interact"):
+		if active_door:
+			position = active_door.teleport() - Vector2(1000, 392.691)
 
 
+func set_active_door(door: FrontDoor) -> void:
+	active_door = door
 
+
+func remove_active_door(door: FrontDoor) -> void:
+	if active_door == door:
+		active_door = null
 
 
 

@@ -38,6 +38,5 @@ func change_object() -> void:
 func complete_object() -> void:
 	change_object()
 	_on_static_body_2d_mouse_exited()
-	remove_child($StaticBody2D)
 
 

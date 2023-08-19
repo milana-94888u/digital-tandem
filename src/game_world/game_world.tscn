@@ -6,8 +6,8 @@
 [ext_resource type="TileSet" uid="uid://c7r7c1mevu851" path="res://resources/tilesets/factory_tileset.tres" id="2_sg1io"]
 [ext_resource type="PackedScene" uid="uid://dscy70cidsylo" path="res://src/virus/virus.tscn" id="4_78r7y"]
 [ext_resource type="PackedScene" uid="uid://dwm7phorujkav" path="res://src/ui/game_chat/game_chat.tscn" id="5_o27hs"]
-[ext_resource type="PackedScene" uid="uid://dvgmmsu1php7b" path="res://src/game_world/objects/dark_area/dark_area.tscn" id="7_k0gvi"]
 [ext_resource type="PackedScene" uid="uid://6kpqpn83qkv4" path="res://src/game_world/objects/door/door.tscn" id="8_o42qh"]
+[ext_resource type="PackedScene" uid="uid://dwwwnrtokmwfb" path="res://src/game_world/objects/front_door/front_door.tscn" id="9_pwgus"]
 
 [node name="GameWorld" type="Node2D"]
 script = ExtResource("1_1ymsr")
@@ -52,10 +52,15 @@ visible = false
 [node name="GameObjects" type="Node2D" parent="."]
 
 [node name="Door" parent="GameObjects" instance=ExtResource("8_o42qh")]
-position = Vector2(1152, 768)
+position = Vector2(896, 768)
 
-[node name="DarkArea" parent="GameObjects" instance=ExtResource("7_k0gvi")]
-position = Vector2(1792, 1280)
+[node name="FrontDoor" parent="GameObjects" node_paths=PackedStringArray("opposite_door") instance=ExtResource("9_pwgus")]
+position = Vector2(-256, 768)
+opposite_door = NodePath("../FrontDoor2")
+
+[node name="FrontDoor2" parent="GameObjects" node_paths=PackedStringArray("opposite_door") instance=ExtResource("9_pwgus")]
+position = Vector2(1536, 768)
+opposite_door = NodePath("../FrontDoor")
 
 [connection signal="chat_requested" from="MechWrapper/Mech" to="." method="_on_mech_chat_requested"]
 [connection signal="chat_requested" from="VirusWrapper/Virus" to="." method="_on_virus_chat_requested"]
@@ -63,4 +68,7 @@ position = Vector2(1792, 1280)
 [connection signal="minigame_completed" from="VirusWrapper/Virus" to="." method="_on_virus_minigame_completed"]
 [connection signal="chat_closed" from="ChatCanvas/GameChat" to="." method="_on_game_chat_chat_closed"]
 [connection signal="object_chosen" from="GameObjects/Door" to="." method="_on_object_chosen"]
-[connection signal="object_chosen" from="GameObjects/DarkArea" to="." method="_on_object_chosen"]
+[connection signal="object_chosen" from="GameObjects/FrontDoor" to="." method="_on_object_chosen"]
+[connection signal="virus_door_entered" from="GameObjects/FrontDoor" to="." method="_on_front_door_virus_door_entered"]
+[connection signal="object_chosen" from="GameObjects/FrontDoor2" to="." method="_on_object_chosen"]
+[connection signal="virus_door_entered" from="GameObjects/FrontDoor2" to="." method="_on_front_door_virus_door_entered"]

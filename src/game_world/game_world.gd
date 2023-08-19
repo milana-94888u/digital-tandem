@@ -39,3 +39,6 @@ func _on_object_chosen(object: GameObject) -> void:
 	$VirusWrapper/Virus.start_minigame(preload("res://src/minigames/captcha/captcha_minigame.tscn").instantiate())
 	virus_active_object = object
 
+
+func _on_front_door_virus_door_entered(teleport_position: Vector2) -> void:
+	$VirusWrapper/Virus.position = teleport_position - Vector2(960, 540)

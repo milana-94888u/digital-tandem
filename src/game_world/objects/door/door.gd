@@ -13,3 +13,4 @@ func change_object() -> void:
 	$AnimatedSprite2D.play("open")
 	$AudioStreamPlayer2D.play()
 	await $AnimatedSprite2D.animation_finished
+	remove_child($StaticBody2D)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://de1lnu3clqsr4"]
+[gd_scene load_steps=5 format=3 uid="uid://de1lnu3clqsr4"]
 
 [ext_resource type="TileSet" uid="uid://c7r7c1mevu851" path="res://resources/tilesets/factory_tileset.tres" id="1_ryj2o"]
 [ext_resource type="PackedScene" uid="uid://6kpqpn83qkv4" path="res://src/game_world/objects/door/door.tscn" id="2_ps1lj"]
+[ext_resource type="PackedScene" uid="uid://bjxrh13ovurni" path="res://src/mech/mech.tscn" id="2_r7kmi"]
 [ext_resource type="Texture2D" uid="uid://cdr3arim5o6rl" path="res://assets/sprites/tiles/objects/animated/door/DoorLocked.png" id="3_gd633"]
 
 [node name="Node2D" type="Node2D"]
@@ -47,36 +48,6 @@ layer_4/tile_data = PackedInt32Array(196615, 196610, 1, 262151, 2, 2, 262152, 65
 [node name="Door" parent="." instance=ExtResource("2_ps1lj")]
 position = Vector2(2176, 768)
 
-[node name="Door2" parent="Door" instance=ExtResource("2_ps1lj")]
-position = Vector2(3584, 0)
-
-[node name="Door3" parent="Door" instance=ExtResource("2_ps1lj")]
-position = Vector2(6144, -2048)
-
-[node name="Door4" parent="Door" instance=ExtResource("2_ps1lj")]
-position = Vector2(6144, 0)
-
-[node name="Door5" parent="Door" instance=ExtResource("2_ps1lj")]
-position = Vector2(8704, 6144)
-
-[node name="Door10" parent="Door" instance=ExtResource("2_ps1lj")]
-position = Vector2(9728, 6144)
-
-[node name="Door6" parent="Door" instance=ExtResource("2_ps1lj")]
-position = Vector2(13824, 1280)
-
-[node name="Door11" parent="Door" instance=ExtResource("2_ps1lj")]
-position = Vector2(11008, 1280)
-
-[node name="Door7" parent="Door" instance=ExtResource("2_ps1lj")]
-position = Vector2(18176, 1280)
-
-[node name="Door8" parent="Door" instance=ExtResource("2_ps1lj")]
-position = Vector2(22272, -512)
-
-[node name="Door9" parent="Door" instance=ExtResource("2_ps1lj")]
-position = Vector2(22272, -512)
-
 [node name="DoorLocked" type="Sprite2D" parent="."]
 position = Vector2(9344, 6912)
 texture = ExtResource("3_gd633")
@@ -100,3 +71,36 @@ texture = ExtResource("3_gd633")
 [node name="DoorLocked6" type="Sprite2D" parent="DoorLocked"]
 position = Vector2(2304, 3072)
 texture = ExtResource("3_gd633")
+
+[node name="Door2" parent="." instance=ExtResource("2_ps1lj")]
+position = Vector2(5760, 768)
+
+[node name="Door3" parent="." instance=ExtResource("2_ps1lj")]
+position = Vector2(8320, -1280)
+
+[node name="Door4" parent="." instance=ExtResource("2_ps1lj")]
+position = Vector2(8320, 768)
+
+[node name="Door5" parent="." instance=ExtResource("2_ps1lj")]
+position = Vector2(10880, 6912)
+
+[node name="Door10" parent="." instance=ExtResource("2_ps1lj")]
+position = Vector2(11904, 6912)
+
+[node name="Door6" parent="." instance=ExtResource("2_ps1lj")]
+position = Vector2(16000, 2048)
+
+[node name="Door11" parent="." instance=ExtResource("2_ps1lj")]
+position = Vector2(13184, 2048)
+
+[node name="Door7" parent="." instance=ExtResource("2_ps1lj")]
+position = Vector2(20352, 2048)
+
+[node name="Door8" parent="." instance=ExtResource("2_ps1lj")]
+position = Vector2(24448, 256)
+
+[node name="Door9" parent="." instance=ExtResource("2_ps1lj")]
+position = Vector2(24448, 256)
+
+[node name="Mech" parent="." instance=ExtResource("2_r7kmi")]
+position = Vector2(9344, 640)

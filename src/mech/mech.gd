@@ -19,6 +19,9 @@ var control_processed := true
 @export var max_health := 100
 @export var health := 100
 
+@export var max_energy := 100
+@export var energy := 100
+
 
 enum AttackType {NONE, MEELE, SHOOT}
 enum MoveType {WALK, RUN, CROACH}

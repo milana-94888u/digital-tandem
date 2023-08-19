@@ -4,6 +4,7 @@ class_name PlayerWrapper
 
 func _ready() -> void:
 	var camera: Camera2D
+	var audio_listener := get_child(0).get_node("AudioListener2D") as AudioListener2D
 	var enabled := false
 	match get_child(0).name:
 		"Mech":
@@ -15,6 +16,11 @@ func _ready() -> void:
 			enabled = Server.player_info["role"] == Server.PlayerRole.VIRUS
 	if camera:
 		camera.enabled = enabled
+		if enabled:
+			audio_listener.make_current()
+			camera.make_current()
+		else:
+			audio_listener.clear_current()
 
 
 @rpc("any_peer", "call_local", "reliable")

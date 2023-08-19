@@ -507,4 +507,4 @@ terrain_set_1/mode = 0
 terrain_set_1/terrain_0/name = "floor platform"
 terrain_set_1/terrain_0/color = Color(0.0666667, 0.435294, 0.478431, 1)
 sources/0 = SubResource("TileSetAtlasSource_ltbl0")
-sources/3 = SubResource("TileSetAtlasSource_s5udj")
+sources/1 = SubResource("TileSetAtlasSource_s5udj")

@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var virus_active_object: Node2D
+var virus_active_object: GameObject
 
 
 func _ready() -> void:
@@ -24,12 +24,6 @@ func _on_game_chat_chat_closed() -> void:
 	$VirusWrapper/Virus.control_processed = true
 
 
-func _on_door_object_chosen(object: Node2D) -> void:
-	$VirusWrapper/Virus.control_processed = false
-	$VirusWrapper/Virus.start_minigame(preload("res://src/minigames/captcha/captcha_minigame.tscn").instantiate())
-	virus_active_object = object
-
-
 func _on_virus_minigame_canceled() -> void:
 	$VirusWrapper/Virus.control_processed = true
 	virus_active_object = null
@@ -37,10 +31,7 @@ func _on_virus_minigame_canceled() -> void:
 
 func _on_virus_minigame_completed() -> void:
 	$VirusWrapper/Virus.control_processed = true
-	if virus_active_object is GameObject:
-		virus_active_object.complete_object.rpc()
-	else:
-		virus_active_object.open_door.rpc()
+	virus_active_object.complete_object.rpc()
 
 
 func _on_object_chosen(object: GameObject) -> void:

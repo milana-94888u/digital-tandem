@@ -1,5 +1,4 @@
 extends GameObject
 
-
 func change_object() -> void:
-	remove_child($DarkArea)
+	remove_child($Light)

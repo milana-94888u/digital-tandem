@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvgmmsu1php7b"]
+
+[ext_resource type="PackedScene" uid="uid://dqvmyatymqdtd" path="res://src/game_world/objects/game_object.tscn" id="1_fdkem"]
+[ext_resource type="Script" path="res://src/game_world/objects/dark_area.gd" id="2_8a6k6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8s36h"]
+resource_local_to_scene = true
+size = Vector2(1920, 1080)
+
+[sub_resource type="Gradient" id="Gradient_0h6kv"]
+offsets = PackedFloat32Array(0.580087, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tuk6c"]
+gradient = SubResource("Gradient_0h6kv")
+width = 1920
+height = 1080
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[node name="DarkArea" instance=ExtResource("1_fdkem")]
+script = ExtResource("2_8a6k6")
+
+[node name="CollisionShape2D" parent="StaticBody2D" index="0"]
+shape = SubResource("RectangleShape2D_8s36h")
+
+[node name="Light" type="PointLight2D" parent="." index="1"]
+blend_mode = 1
+texture = SubResource("GradientTexture2D_tuk6c")

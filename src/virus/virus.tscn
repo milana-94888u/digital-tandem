@@ -5,6 +5,8 @@
 [node name="Virus" type="Camera2D"]
 script = ExtResource("1_jlccm")
 
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+
 [node name="UICanvas" type="CanvasLayer" parent="."]
 
 [node name="Label" type="Label" parent="UICanvas"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dvgmmsu1php7b"]
 
-[ext_resource type="PackedScene" uid="uid://dqvmyatymqdtd" path="res://src/game_world/objects/game_object.tscn" id="1_fdkem"]
-[ext_resource type="Script" path="res://src/game_world/objects/dark_area.gd" id="2_8a6k6"]
+[ext_resource type="PackedScene" uid="uid://dqvmyatymqdtd" path="res://src/game_world/objects/game_object.tscn" id="1_1xgud"]
+[ext_resource type="Script" path="res://src/game_world/objects/dark_area/dark_area.gd" id="1_k4e1t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8s36h"]
 resource_local_to_scene = true
@@ -19,8 +19,8 @@ fill = 2
 fill_from = Vector2(0.5, 0.5)
 metadata/_snap_enabled = true
 
-[node name="DarkArea" instance=ExtResource("1_fdkem")]
-script = ExtResource("2_8a6k6")
+[node name="DarkArea" instance=ExtResource("1_1xgud")]
+script = ExtResource("1_k4e1t")
 
 [node name="CollisionShape2D" parent="StaticBody2D" index="0"]
 shape = SubResource("RectangleShape2D_8s36h")

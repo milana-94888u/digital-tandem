@@ -1,10 +1,6 @@
 extends GameObject
 
 
-func _ready() -> void:
-	change_object()
-
-
 func select_game_object() -> void:
 	modulate = Color.RED
 

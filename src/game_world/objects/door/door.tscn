@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://6kpqpn83qkv4"]
+[gd_scene load_steps=15 format=3 uid="uid://6kpqpn83qkv4"]
 
 [ext_resource type="PackedScene" uid="uid://dqvmyatymqdtd" path="res://src/game_world/objects/game_object.tscn" id="1_37ohw"]
 [ext_resource type="Script" path="res://src/game_world/objects/door/door.gd" id="2_7rwcy"]
 [ext_resource type="Texture2D" uid="uid://bqpcxodom3ums" path="res://assets/sprites/tiles/side door.png" id="2_vjeel"]
+[ext_resource type="AudioStream" uid="uid://c3oo7qokoxs0y" path="res://assets/sounds/open.ogg" id="4_axx72"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2d65n"]
 size = Vector2(128, 512)
@@ -80,3 +81,6 @@ shape = SubResource("RectangleShape2D_2d65n")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_gnjtm")
 animation = &"open"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="2"]
+stream = ExtResource("4_axx72")

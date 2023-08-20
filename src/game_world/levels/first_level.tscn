@@ -185,7 +185,6 @@ position = Vector2(13184, 10112)
 position = Vector2(21120, 9600)
 
 [node name="ChatCanvas" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="GameChat" parent="ChatCanvas" instance=ExtResource("5_5wip7")]
 mouse_filter = 1

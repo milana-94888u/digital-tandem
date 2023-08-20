@@ -234,7 +234,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkj4a"]
-size = Vector2(400, 480)
+size = Vector2(230, 480)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5yi8l"]
 properties/0/path = NodePath(".:velocity")
@@ -258,10 +258,11 @@ speed_scale = 2.0
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(64, -240)
+position = Vector2(57, -241)
 shape = SubResource("RectangleShape2D_jkj4a")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(16, -568)
 zoom = Vector2(0.5, 0.5)
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]

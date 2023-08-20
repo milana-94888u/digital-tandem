@@ -8,11 +8,12 @@
 texture_filter = 1
 offset_right = 768.0
 offset_bottom = 64.0
+value = 40.0
 nine_patch_stretch = true
 stretch_margin_left = 7
 stretch_margin_top = 7
 stretch_margin_right = 7
 stretch_margin_bottom = 7
-texture_under = ExtResource("1_cp3v2")
+texture_under = ExtResource("3_82j06")
 texture_over = ExtResource("2_gvuya")
-texture_progress = ExtResource("3_82j06")
+texture_progress = ExtResource("1_cp3v2")

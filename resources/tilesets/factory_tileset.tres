@@ -1,8 +1,8 @@
 [gd_resource type="TileSet" load_steps=7 format=3 uid="uid://c7r7c1mevu851"]
 
-[ext_resource type="Texture2D" uid="uid://b2j6ra684e5lf" path="res://assets/sprites/tiles/tilesheet.png" id="1_jc7ah"]
-[ext_resource type="Texture2D" uid="uid://cc0bb0c8ybp5j" path="res://assets/sprites/tiles/conveyor_tiles.png" id="2_uixw6"]
-[ext_resource type="Texture2D" uid="uid://bkuyrtufs856m" path="res://assets/sprites/tiles/wires.png" id="3_ta40c"]
+[ext_resource type="Texture2D" uid="uid://cwydg641vbgrp" path="res://assets/sprites/tiles/tilesheet.png" id="1_jc7ah"]
+[ext_resource type="Texture2D" uid="uid://woxn0rym6dnx" path="res://assets/sprites/tiles/conveyor_tiles.png" id="2_uixw6"]
+[ext_resource type="Texture2D" uid="uid://sem88qdhgvi4" path="res://assets/sprites/tiles/wires.png" id="3_ta40c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ltbl0"]
 texture = ExtResource("1_jc7ah")

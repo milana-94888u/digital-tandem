@@ -40,7 +40,7 @@ position = Vector2(-993.832, -648.691)
 scale = Vector2(0.8, 0.8)
 
 [node name="VirusWrapper" parent="." instance=ExtResource("2_3ss46")]
-position = Vector2(993.832, 648.691)
+position = Vector2(993.832, 300)
 
 [node name="Virus" parent="VirusWrapper" instance=ExtResource("4_78r7y")]
 

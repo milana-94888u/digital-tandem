@@ -1,4 +1,4 @@
-extends Camera2D
+extends CharacterBody2D
 class_name Virus
 
 
@@ -18,11 +18,12 @@ const MAX_ZOOM := 2.0
 func _physics_process(_delta: float) -> void:
 	if not control_processed:
 		return
-	position += Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") * 10
+	velocity = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") * 500 / $Camera2D.zoom.x
+	move_and_slide()
 	if Input.is_action_pressed("zoom_in"):
-		zoom = Vector2.ONE * minf(MAX_ZOOM, zoom.x + 0.02)
+		$Camera2D.zoom = Vector2.ONE * maxf(MIN_ZOOM, $Camera2D.zoom.x + 0.02)
 	elif Input.is_action_pressed("zoom_out"):
-		zoom = Vector2.ONE * maxf(MIN_ZOOM, zoom.x - 0.02)
+		$Camera2D.zoom = Vector2.ONE * maxf(MIN_ZOOM, $Camera2D.zoom.x - 0.02)
 
 
 func _input(event: InputEvent) -> void:

@@ -1,9 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://dscy70cidsylo"]
+[gd_scene load_steps=3 format=3 uid="uid://dscy70cidsylo"]
 
 [ext_resource type="Script" path="res://src/virus/virus.gd" id="1_jlccm"]
 
-[node name="Virus" type="Camera2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_p1nuu"]
+
+[node name="Virus" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
+motion_mode = 1
 script = ExtResource("1_jlccm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 
@@ -16,3 +23,6 @@ offset_right = 1267.0
 offset_bottom = 192.0
 theme_override_font_sizes/font_size = 100
 text = "VIRUS"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_p1nuu")

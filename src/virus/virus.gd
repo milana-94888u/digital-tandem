@@ -13,7 +13,7 @@ signal teleport_to_mech_requested
 var control_processed := true
 
 
-const MIN_ZOOM := 0.1
+const MIN_ZOOM := 0.34
 const MAX_ZOOM := 2.0
 
 

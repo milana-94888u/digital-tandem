@@ -1,6 +1,9 @@
 extends Control
 
 
+@export var first_level_scene: PackedScene
+
+
 var proposer_nickname := ""
 
 
@@ -169,10 +172,7 @@ func check_to_connect(player: Dictionary, connection_info: Dictionary) -> void:
 	var host: String = connection_info["host"]
 	var port: int = connection_info["port"]
 	
-	Server.set_title(get_string_role().capitalize())
-	Server.join_game(host, port)
-	await Server.multiplayer.connected_to_server
-	get_tree().change_scene_to_file("res://src/multiplayer/world_wrapper/world_wrapper.tscn")
+	join_game(host, port)
 
 
 func disable_player(nickname: String) -> void:
@@ -231,7 +231,7 @@ func _ready() -> void:
 func _on_host_button_pressed() -> void:
 	Server.set_title("Server")
 	Server.player_info["role"] = Server.PlayerRole.UNSET
-	get_tree().change_scene_to_file("res://src/multiplayer/world_wrapper/world_wrapper.tscn")
+	get_tree().change_scene_to_packed(first_level_scene)
 	Server.create_game()
 
 
@@ -239,11 +239,7 @@ func _on_join_local_button_pressed() -> void:
 	var nickname := prepare_player_info()
 	if nickname == "":
 		return
-	
-	Server.set_title(get_string_role().capitalize())
-	Server.join_game()
-	await Server.multiplayer.connected_to_server
-	get_tree().change_scene_to_file("res://src/multiplayer/world_wrapper/world_wrapper.tscn")
+	join_game(Server.DEFAULT_IP, Server.DEFAULT_PORT)
 
 
 func _on_host_edit_text_changed(new_text: String) -> void:
@@ -264,3 +260,10 @@ func _on_reject_button_pressed() -> void:
 	})
 	players_list.show()
 	invite_window.hide()
+
+
+func join_game(host: String, port: int) -> void:
+	Server.set_title(get_string_role().capitalize())
+	Server.join_game(host, port)
+	await Server.multiplayer.connected_to_server
+	get_tree().change_scene_to_packed(first_level_scene)

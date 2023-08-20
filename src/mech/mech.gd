@@ -9,6 +9,7 @@ signal chat_requested
 
 
 var control_processed := true
+var run_multiplier := 1.0
 
 
 @export var jump_unlocked := false
@@ -67,7 +68,18 @@ func _physics_process(_delta: float) -> void:
 
 
 func _process(_delta: float) -> void:
-	var input_direction := Vector2(Input.get_axis("ui_left", "ui_right"), 0.0).normalized() if control_processed else Vector2.ZERO
+	var run_direction := Vector2.ZERO
+	if run_unlocked:
+		run_direction = Vector2(Input.get_axis("run_left", "run_right"), 0.0).normalized() if control_processed else Vector2.ZERO
+		if run_direction:
+			run_multiplier = 2.0
+		else:
+			run_multiplier = 1.0
+	var input_direction := Vector2.ZERO
+	if run_multiplier == 1.0:
+		input_direction = Vector2(Input.get_axis("ui_left", "ui_right"), 0.0).normalized() if control_processed else Vector2.ZERO
+	else:
+		input_direction = run_direction
 	if input_direction != Vector2.ZERO:
 		accelerate(input_direction)
 	else:
@@ -76,7 +88,7 @@ func _process(_delta: float) -> void:
 
 
 func accelerate(direction) -> void:
-	velocity = velocity.move_toward(speed * direction if energy > 0 else speed * 0.2 * direction, acceleration)
+	velocity = velocity.move_toward(speed * direction * run_multiplier if energy > 0 else speed * 0.2 * direction, acceleration)
 
 
 func add_friction() -> void:
@@ -99,8 +111,10 @@ func set_animation() -> void:
 	if is_on_floor():
 		if velocity.x == 0.0:
 			$AnimatedSprite2D.play("idle")
-		else:
+		elif run_multiplier == 1.0:
 			$AnimatedSprite2D.play("walk")
+		else:
+			$AnimatedSprite2D.play("run")
 	else:
 		$AnimatedSprite2D.play("jump")
 

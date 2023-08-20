@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvgmmsu1php7b"]
+[gd_scene load_steps=7 format=3 uid="uid://dvgmmsu1php7b"]
 
 [ext_resource type="PackedScene" uid="uid://dqvmyatymqdtd" path="res://src/game_world/objects/game_object.tscn" id="1_1xgud"]
 [ext_resource type="Script" path="res://src/game_world/objects/dark_area/dark_area.gd" id="1_k4e1t"]
+[ext_resource type="AudioStream" uid="uid://d4gobjhdd0w2p" path="res://assets/sounds/engine_2.ogg" id="3_uvn7c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8s36h"]
 resource_local_to_scene = true
@@ -44,6 +45,9 @@ shape = SubResource("RectangleShape2D_8s36h")
 
 [node name="MechDamageTimer" type="Timer" parent="." index="3"]
 wait_time = 0.1
+
+[node name="DisablePlayer" type="AudioStreamPlayer2D" parent="." index="4"]
+stream = ExtResource("3_uvn7c")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

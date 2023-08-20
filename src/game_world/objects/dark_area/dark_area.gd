@@ -15,6 +15,8 @@ func deselect_game_object() -> void:
 
 
 func change_object() -> void:
+	$DisablePlayer.play()
+	await $DisablePlayer.finished
 	remove_child($Light)
 	remove_child($StaticBody2D)
 	remove_child($Area2D)

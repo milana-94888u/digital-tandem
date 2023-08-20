@@ -41,7 +41,6 @@ func join_game(address := DEFAULT_IP, port := DEFAULT_PORT):
 	multiplayer.multiplayer_peer = peer
 	multiplayer.server_disconnected.connect(
 		func():
-			print("-server")
 			get_tree().change_scene_to_file("res://src/ui/game_lobby/game_lobby.tscn")
 	)
 
@@ -54,7 +53,6 @@ func create_game():
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_disconnected.connect(
 		func(peer: int):
-			print("disconnected %d" % peer)
 			multiplayer.multiplayer_peer.close()
 			get_tree().quit()
 	)

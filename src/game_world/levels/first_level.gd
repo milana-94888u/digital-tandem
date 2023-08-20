@@ -10,6 +10,7 @@ var virus_active_object: GameObject
 
 
 @export var minigame_scene: PackedScene
+@export var next_level: PackedScene
 
 
 func _on_mech_chat_requested() -> void:
@@ -80,4 +81,10 @@ func restart_level() -> void:
 
 
 func _on_mech_mech_dead() -> void:
-	restart_level.rpc()
+	if mech.is_multiplayer_authority():
+		restart_level.rpc()
+
+
+func _on_win_area_body_entered(body: Node2D) -> void:
+	if body is Mech and mech.is_multiplayer_authority():
+		get_tree().reload_current_scene()

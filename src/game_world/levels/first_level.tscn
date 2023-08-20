@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d2epxyydyvwtw"]
+[gd_scene load_steps=15 format=3 uid="uid://d2epxyydyvwtw"]
 
 [ext_resource type="Script" path="res://src/game_world/levels/first_level.gd" id="1_p6kno"]
 [ext_resource type="PackedScene" uid="uid://c47lcnllnfuiy" path="res://src/minigames/captcha/captcha_minigame.tscn" id="2_acb1b"]
@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://dwwwnrtokmwfb" path="res://src/game_world/objects/front_door/front_door.tscn" id="10_adxas"]
 [ext_resource type="PackedScene" uid="uid://6kpqpn83qkv4" path="res://src/game_world/objects/door/door.tscn" id="11_7ooqi"]
 [ext_resource type="PackedScene" uid="uid://bgvhv1qaghnrw" path="res://src/game_world/objects/mech_upgrade.tscn" id="12_c12cn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bmnsl"]
+size = Vector2(1889.25, 2850.5)
 
 [node name="FirstLevel" type="Node2D"]
 script = ExtResource("1_p6kno")
@@ -81,18 +84,6 @@ layer_4/y_sort_enabled = false
 layer_4/y_sort_origin = 0
 layer_4/z_index = 10
 layer_4/tile_data = PackedInt32Array(196615, 196610, 1, 262151, 2, 2, 262152, 65538, 2, 196616, 196610, 1, 196629, 196610, 1, 262166, 65538, 2, 262165, 2, 2, 262159, 65538, 0, 262158, 131074, 2, 262157, 131074, 2, -65520, 131074, 0, -196597, 131074, 2, 196640, 196610, 1, 262172, 65538, 0, 262171, 131074, 2, -65509, 131074, 2, 262170, 131074, 0, 262156, 131074, 2, -65519, 65538, 0, -196598, 131074, 0, -196596, 65538, 0, -65510, 131074, 0, -262118, 131074, 0, -327649, 196610, 1, -262113, 2, 2, -458722, 2, 0, -262112, 65538, 2, -327648, 196610, 1, -458718, 2, 0, -65508, 65538, 0, -65513, 2, 0, 262155, 131074, 0, -262117, 131074, 2, -262116, 65538, 0, 262175, 2, 2, 196639, 196610, 1, 262176, 65538, 2, 262179, 2, 2, 262180, 65538, 2, 196643, 196610, 1, 196644, 196610, 1, 524338, 196610, 1, 589874, 2, 2, 589875, 65538, 2, 524339, 196610, 1, 393269, 2, 0, 589878, 131074, 2, 589879, 65538, 0, 524349, 196610, 1, 589883, 131074, 2, 589882, 131074, 0, 589886, 65538, 2, 524350, 196610, 1, 262200, 131074, 2, 262199, 131074, 2, 262207, 2, 0, 524366, 196610, 1, 589902, 2, 2, 589903, 65538, 2, 524367, 196610, 1, 65630, 196610, 1, 131166, 2, 2, 131167, 65538, 2, 65631, 196610, 1, 262222, 2, 0, 262224, 2, 0, 1507361, 2, 0, 65555, 2, 0, 196630, 196610, 1, -589815, 2, 0, -65505, 2, 0, 589877, 131074, 0, 262201, 131074, 2, 262202, 131074, 2, 262203, 65538, 0, 262198, 131074, 0, 61, 2, 0, 52, 2, 0, 589885, 2, 2, 589884, 65538, 0, 393276, 2, 0, 589888, 2, 0, 589890, 131074, 2, 589894, 65538, 0, 589893, 131074, 2, 589892, 131074, 0, 589891, 65538, 0, 589897, 65538, 0, 589896, 131074, 2, 589895, 131074, 0, 589900, 65538, 0, 589899, 131074, 2, 589898, 131074, 0, 589901, 2, 0, 589889, 131074, 0, 1769513, 196610, 1, 1835049, 2, 2, 1835050, 131074, 3, 1769514, 196610, 1, 1835051, 131074, 2, 1835052, 131074, 2, 1835053, 131074, 2, 1835054, 65538, 2, 1769518, 196610, 1, 1507380, 2, 0, 2293812, 2, 0, 2293844, 2, 0, 524332, 196610, 1, 589868, 2, 2, 589869, 65538, 2, 524333, 196610, 1)
-
-[node name="MechWrapper" parent="." instance=ExtResource("2_ytu5e")]
-position = Vector2(993.832, 648.691)
-
-[node name="Mech" parent="MechWrapper" instance=ExtResource("3_4e3pu")]
-position = Vector2(-225.832, 375.309)
-
-[node name="VirusWrapper" parent="." instance=ExtResource("2_ytu5e")]
-position = Vector2(993.832, 300)
-
-[node name="Virus" parent="VirusWrapper" instance=ExtResource("4_7ldfh")]
-position = Vector2(-225.832, 468)
 
 [node name="GameObjects" type="Node2D" parent="."]
 
@@ -185,18 +176,31 @@ position = Vector2(13184, 10112)
 [node name="MechUpgrade5" parent="GameObjects/MechUpgrades" instance=ExtResource("12_c12cn")]
 position = Vector2(21120, 9600)
 
+[node name="MechWrapper" parent="." instance=ExtResource("2_ytu5e")]
+position = Vector2(993.832, 648.691)
+
+[node name="Mech" parent="MechWrapper" instance=ExtResource("3_4e3pu")]
+position = Vector2(-225.832, 375.309)
+
+[node name="VirusWrapper" parent="." instance=ExtResource("2_ytu5e")]
+position = Vector2(993.832, 300)
+
+[node name="Virus" parent="VirusWrapper" instance=ExtResource("4_7ldfh")]
+position = Vector2(-225.832, 468)
+
 [node name="ChatCanvas" type="CanvasLayer" parent="."]
 
 [node name="GameChat" parent="ChatCanvas" instance=ExtResource("5_5wip7")]
 mouse_filter = 1
 metadata/_edit_use_anchors_ = true
 
-[connection signal="chat_requested" from="MechWrapper/Mech" to="." method="_on_mech_chat_requested"]
-[connection signal="mech_dead" from="MechWrapper/Mech" to="." method="_on_mech_mech_dead"]
-[connection signal="chat_requested" from="VirusWrapper/Virus" to="." method="_on_virus_chat_requested"]
-[connection signal="minigame_canceled" from="VirusWrapper/Virus" to="." method="_on_virus_minigame_canceled"]
-[connection signal="minigame_completed" from="VirusWrapper/Virus" to="." method="_on_virus_minigame_completed"]
-[connection signal="teleport_to_mech_requested" from="VirusWrapper/Virus" to="." method="_on_virus_teleport_to_mech_requested"]
+[node name="WinArea" type="Area2D" parent="."]
+position = Vector2(100, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinArea"]
+position = Vector2(25372, 384)
+shape = SubResource("RectangleShape2D_bmnsl")
+
 [connection signal="object_chosen" from="GameObjects/DarkAreas/DarkArea4" to="." method="_on_object_chosen"]
 [connection signal="object_chosen" from="GameObjects/DarkAreas/DarkArea5" to="." method="_on_object_chosen"]
 [connection signal="object_chosen" from="GameObjects/DarkAreas/DarkArea6" to="." method="_on_object_chosen"]
@@ -229,4 +233,11 @@ metadata/_edit_use_anchors_ = true
 [connection signal="upgrade_picked" from="GameObjects/MechUpgrades/MechUpgrade3" to="." method="_on_mech_upgrade_upgrade_picked"]
 [connection signal="upgrade_picked" from="GameObjects/MechUpgrades/MechUpgrade4" to="." method="_on_mech_upgrade_upgrade_picked"]
 [connection signal="upgrade_picked" from="GameObjects/MechUpgrades/MechUpgrade5" to="." method="_on_mech_upgrade_upgrade_picked"]
+[connection signal="chat_requested" from="MechWrapper/Mech" to="." method="_on_mech_chat_requested"]
+[connection signal="mech_dead" from="MechWrapper/Mech" to="." method="_on_mech_mech_dead"]
+[connection signal="chat_requested" from="VirusWrapper/Virus" to="." method="_on_virus_chat_requested"]
+[connection signal="minigame_canceled" from="VirusWrapper/Virus" to="." method="_on_virus_minigame_canceled"]
+[connection signal="minigame_completed" from="VirusWrapper/Virus" to="." method="_on_virus_minigame_completed"]
+[connection signal="teleport_to_mech_requested" from="VirusWrapper/Virus" to="." method="_on_virus_teleport_to_mech_requested"]
 [connection signal="chat_closed" from="ChatCanvas/GameChat" to="." method="_on_game_chat_chat_closed"]
+[connection signal="body_entered" from="WinArea" to="." method="_on_win_area_body_entered"]

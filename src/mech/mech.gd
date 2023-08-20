@@ -4,6 +4,7 @@ class_name Mech
 
 var active_door: FrontDoor
 var is_charging := false
+var is_alive := true
 
 
 signal chat_requested
@@ -34,11 +35,12 @@ var run_multiplier := 1.0
 		$FloatingUI.update_max_health(value)
 @export var health := 100:
 	set(value):
+		if value < 1 and is_alive:
+			is_alive = false
+			mech_dead.emit()
 		health = value
 		$UICanvas/MechUI.update_health(value)
 		$FloatingUI.update_health(value)
-		if health < 1:
-			mech_dead.emit()
 
 @export var max_energy := 10000:
 	set(value):

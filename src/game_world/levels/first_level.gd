@@ -67,13 +67,15 @@ func _on_mech_upgrade_upgrade_picked(upgrade: MechUpgrade) -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func restart_level() -> void:
+	mech.is_alive = false
 	$MechWrapper/Mech/AnimatedSprite2D.play("die")
+	$MechWrapper/Mech/DeathPlayer.play()
 	_on_virus_teleport_to_mech_requested()
 	mech.control_processed = false
 	virus.control_processed = false
 	game_chat.send_message("The mech died")
 	game_chat.show_chat()
-	await $MechWrapper/Mech/AnimatedSprite2D.animation_finished
+	await $MechWrapper/Mech/DeathPlayer.finished
 	get_tree().reload_current_scene()
 
 

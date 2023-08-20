@@ -35,4 +35,5 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 func _on_mech_damage_timer_timeout() -> void:
 	if mech:
-		mech.health -= 1
+		if mech.is_alive:
+			mech.health -= 1

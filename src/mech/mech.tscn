@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://bjxrh13ovurni"]
+[gd_scene load_steps=65 format=3 uid="uid://bjxrh13ovurni"]
 
 [ext_resource type="Script" path="res://src/mech/mech.gd" id="1_balh4"]
 [ext_resource type="Texture2D" uid="uid://b6dqw0sbs2v2d" path="res://assets/sprites/mech/Idle.png" id="2_rb24r"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bs2bbf5ukhqf2" path="res://src/ui/players/mech_ui.tscn" id="5_pk7ov"]
 [ext_resource type="PackedScene" uid="uid://ci72dvxpt3j2a" path="res://src/ui/players/floating_ui.tscn" id="6_bmocx"]
 [ext_resource type="AudioStream" uid="uid://nkhp5qnl6a7b" path="res://assets/sounds/footsteps.ogg" id="7_3i5ed"]
+[ext_resource type="AudioStream" uid="uid://r2blfmxmxvgu" path="res://assets/sounds/turned_off.ogg" id="10_wxjg1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bp7em"]
 atlas = ExtResource("5_l6xs1")
@@ -452,6 +453,9 @@ mouse_filter = 1
 
 [node name="StepsPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_3i5ed")
+
+[node name="DeathPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_wxjg1")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

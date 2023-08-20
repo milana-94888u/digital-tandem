@@ -11,6 +11,11 @@ signal chat_requested
 var control_processed := true
 
 
+@export var jump_unlocked := false
+@export var run_unlocked := false
+@export var crouch_unlocked := false
+
+
 @export var speed := 600
 @export var jump_power := 4000
 
@@ -54,6 +59,10 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	if velocity:
 		self.energy -= int(absf(velocity.x) / speed * 5.0) + (5 if velocity.y > 0 else 0)
+	if velocity and is_on_floor():
+		$StepsPlayer.play()
+	else:
+		$StepsPlayer.stop()
 
 
 func _process(_delta: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bjxrh13ovurni"]
+[gd_scene load_steps=41 format=3 uid="uid://bjxrh13ovurni"]
 
 [ext_resource type="Script" path="res://src/mech/mech.gd" id="1_balh4"]
 [ext_resource type="Texture2D" uid="uid://b6dqw0sbs2v2d" path="res://assets/sprites/mech/Idle.png" id="2_rb24r"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cna6m26iebxk5" path="res://assets/sprites/mech/Walk.png" id="4_2jkil"]
 [ext_resource type="PackedScene" uid="uid://bs2bbf5ukhqf2" path="res://src/ui/players/mech_ui.tscn" id="5_pk7ov"]
 [ext_resource type="PackedScene" uid="uid://ci72dvxpt3j2a" path="res://src/ui/players/floating_ui.tscn" id="6_bmocx"]
+[ext_resource type="AudioStream" uid="uid://nkhp5qnl6a7b" path="res://assets/sounds/footsteps.ogg" id="7_3i5ed"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o5833"]
 atlas = ExtResource("2_rb24r")
@@ -287,6 +288,9 @@ offset_left = -245.0
 offset_top = -574.0
 offset_right = -245.0
 offset_bottom = -574.0
+
+[node name="StepsPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_3i5ed")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

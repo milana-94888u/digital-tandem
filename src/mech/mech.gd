@@ -79,7 +79,6 @@ func _physics_process(_delta: float) -> void:
 
 
 func _process(_delta: float) -> void:
-	jump_unlocked = true
 	var run_direction := Vector2.ZERO
 	if run_unlocked:
 		run_direction = Vector2(Input.get_axis("run_left", "run_right"), 0.0).normalized() if control_processed else Vector2.ZERO

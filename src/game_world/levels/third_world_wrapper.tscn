@@ -5,4 +5,4 @@
 
 [node name="ThirdWorldWrapper" instance=ExtResource("1_4j33x")]
 
-[node name="ThirdLevel" parent="." index="0" instance=ExtResource("2_pmyi4")]
+[node name="GameWorld" parent="." index="0" instance=ExtResource("2_pmyi4")]

@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/game_world/levels/third_level.gd" id="1_568ht"]
 [ext_resource type="Texture2D" uid="uid://ceuy83ef1w3re" path="res://assets/sprites/tiles/parallax-moon.png" id="2_ld55d"]
 [ext_resource type="PackedScene" uid="uid://c47lcnllnfuiy" path="res://src/minigames/captcha/captcha_minigame.tscn" id="2_lu21y"]
-[ext_resource type="PackedScene" uid="uid://blyc1n36gv656" path="res://src/ui/game_lobby/game_lobby.tscn" id="3_cntxb"]
+[ext_resource type="PackedScene" uid="uid://daxmkfuqbodd8" path="res://src/ui/game_lobby/game_finished_screen.tscn" id="3_1q84b"]
 [ext_resource type="Texture2D" uid="uid://dpeh47s5g4mf5" path="res://assets/sprites/tiles/parallax-clouds.png" id="3_h76hx"]
 [ext_resource type="Texture2D" uid="uid://bg3kure2g6jfp" path="res://assets/sprites/tiles/parallax-city.png" id="4_uyfbm"]
 [ext_resource type="TileSet" uid="uid://c7r7c1mevu851" path="res://resources/tilesets/factory_tileset.tres" id="5_geqaq"]
@@ -30,7 +30,7 @@ size = Vector2(48896, 2850.5)
 [node name="ThirdLevel" type="Node2D"]
 script = ExtResource("1_568ht")
 minigame_scene = ExtResource("2_lu21y")
-next_level = ExtResource("3_cntxb")
+next_level = ExtResource("3_1q84b")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_limit_end = Vector2(0, 2160)
@@ -492,6 +492,8 @@ position = Vector2(993.832, 648.691)
 
 [node name="Mech" parent="MechWrapper" instance=ExtResource("7_ak573")]
 position = Vector2(-2401.83, 375.309)
+jump_unlocked = true
+run_unlocked = true
 
 [node name="VirusWrapper" parent="." instance=ExtResource("6_k5nic")]
 position = Vector2(993.832, 300)

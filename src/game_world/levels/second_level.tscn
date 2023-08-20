@@ -494,6 +494,8 @@ position = Vector2(19584, 1280)
 position = Vector2(1152, 2012.69)
 
 [node name="Mech" parent="MechWrapper" instance=ExtResource("12_i5sva")]
+jump_unlocked = true
+run_unlocked = true
 jump_power = 7000
 
 [node name="VirusWrapper" parent="." instance=ExtResource("5_hberb")]

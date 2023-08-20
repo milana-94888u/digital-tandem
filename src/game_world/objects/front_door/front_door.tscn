@@ -102,9 +102,9 @@ disabled = true
 [node name="Label" type="Label" parent="." index="4"]
 visible = false
 offset_left = -225.0
-offset_top = -194.0
+offset_top = -400.0
 offset_right = 231.0
-offset_bottom = -108.0
+offset_bottom = -314.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 60

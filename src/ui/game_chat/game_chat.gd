@@ -12,6 +12,7 @@ signal chat_closed
 
 
 func show_chat() -> void:
+	current_message.hide()
 	history_messages.show()
 	chat_line.grab_focus()
 	chat_line.call_deferred("clear")

@@ -19,11 +19,23 @@ var control_processed := true
 
 @export var gravity := 120
 
-@export var max_health := 100
-@export var health := 100
+@export var max_health := 100:
+	set(value):
+		$UICanvas/MechUI.update_max_health(value)
+		$FloatingUI.update_max_health(value)
+@export var health := 100:
+	set(value):
+		$UICanvas/MechUI.update_health(value)
+		$FloatingUI.update_health(value)
 
-@export var max_energy := 100
-@export var energy := 100
+@export var max_energy := 100:
+	set(value):
+		$UICanvas/MechUI.update_max_energy(value)
+		$FloatingUI.update_max_energy(value)
+@export var energy := 100:
+	set(value):
+		$UICanvas/MechUI.update_energy(value)
+		$FloatingUI.update_energy(value)
 
 
 enum AttackType {NONE, MEELE, SHOOT}
@@ -78,11 +90,13 @@ func set_animation() -> void:
 
 
 func _on_mouse_entered() -> void:
-	modulate = Color.RED
+	modulate = Color.WHEAT
+	$FloatingUI.show()
 
 
 func _on_mouse_exited() -> void:
 	modulate = Color.WHITE
+	$FloatingUI.hide()
 
 
 func _input(event: InputEvent) -> void:

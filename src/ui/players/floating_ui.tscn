@@ -1,27 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://bs2bbf5ukhqf2"]
+[gd_scene load_steps=6 format=3 uid="uid://ci72dvxpt3j2a"]
 
-[ext_resource type="Texture2D" uid="uid://bmo0pvpff8pve" path="res://assets/sprites/health bar under.png" id="1_4n1we"]
-[ext_resource type="Script" path="res://src/ui/players/mech_ui.gd" id="1_ff4x0"]
-[ext_resource type="Theme" uid="uid://d08doluppjp3o" path="res://resources/themes/mech_ui_theme.tres" id="1_k67wc"]
-[ext_resource type="Texture2D" uid="uid://hneso82rsryf" path="res://assets/sprites/health bar over.png" id="2_k0k80"]
-[ext_resource type="Texture2D" uid="uid://bgquwkoexmmv7" path="res://assets/sprites/health bar.png" id="3_danhu"]
+[ext_resource type="Texture2D" uid="uid://bmo0pvpff8pve" path="res://assets/sprites/health bar under.png" id="1_aiwea"]
+[ext_resource type="Theme" uid="uid://d08doluppjp3o" path="res://resources/themes/mech_ui_theme.tres" id="1_nmvjb"]
+[ext_resource type="Script" path="res://src/ui/players/floating_ui.gd" id="2_blkgd"]
+[ext_resource type="Texture2D" uid="uid://hneso82rsryf" path="res://assets/sprites/health bar over.png" id="2_hp0kb"]
+[ext_resource type="Texture2D" uid="uid://bgquwkoexmmv7" path="res://assets/sprites/health bar.png" id="3_cco4h"]
 
-[node name="MechUI" type="Control"]
+[node name="FloatingUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_k67wc")
-script = ExtResource("1_ff4x0")
+theme = ExtResource("1_nmvjb")
+script = ExtResource("2_blkgd")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
 offset_left = 32.0
 offset_top = 32.0
-offset_right = 800.0
-offset_bottom = 160.0
+offset_right = 497.0
+offset_bottom = 136.0
 
 [node name="EnergyBar" type="TextureProgressBar" parent="VBoxContainer"]
 self_modulate = Color(0, 0.247059, 1, 1)
@@ -33,9 +32,9 @@ stretch_margin_left = 7
 stretch_margin_top = 7
 stretch_margin_right = 7
 stretch_margin_bottom = 7
-texture_under = ExtResource("1_4n1we")
-texture_over = ExtResource("2_k0k80")
-texture_progress = ExtResource("3_danhu")
+texture_under = ExtResource("1_aiwea")
+texture_over = ExtResource("2_hp0kb")
+texture_progress = ExtResource("3_cco4h")
 
 [node name="Label" type="Label" parent="VBoxContainer/EnergyBar"]
 layout_mode = 1
@@ -57,9 +56,9 @@ stretch_margin_left = 7
 stretch_margin_top = 7
 stretch_margin_right = 7
 stretch_margin_bottom = 7
-texture_under = ExtResource("1_4n1we")
-texture_over = ExtResource("2_k0k80")
-texture_progress = ExtResource("3_danhu")
+texture_under = ExtResource("1_aiwea")
+texture_over = ExtResource("2_hp0kb")
+texture_progress = ExtResource("3_cco4h")
 
 [node name="Label" type="Label" parent="VBoxContainer/HealthBar"]
 layout_mode = 1

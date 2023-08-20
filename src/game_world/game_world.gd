@@ -45,4 +45,4 @@ func _on_front_door_virus_door_entered(teleport_position: Vector2) -> void:
 
 
 func _on_virus_teleport_to_mech_requested() -> void:
-	$VirusWrapper/Virus.position = $MechWrapper/Mech.position - Vector2(960, 600)
+	$VirusWrapper/Virus.position = $MechWrapper/Mech.position

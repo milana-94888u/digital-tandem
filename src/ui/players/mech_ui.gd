@@ -7,10 +7,10 @@ extends Control
 @onready var health_label := $VBoxContainer/HealthBar/Label as Label
 
 
-func update_max_enegy(value: int) -> void:
+func update_max_energy(value: int) -> void:
 	var delta := energy_bar.max_value - value
 	energy_bar.max_value = value
-	update_energy(energy_bar.value + delta)
+	update_energy(int(energy_bar.value + delta))
 
 
 func update_energy(value: int) -> void:
@@ -21,7 +21,7 @@ func update_energy(value: int) -> void:
 func update_max_health(value: int) -> void:
 	var delta := health_bar.max_value - value
 	health_bar.max_value = value
-	update_energy(health_bar.value + delta)
+	update_energy(int(health_bar.value + delta))
 
 
 func update_health(value: int) -> void:

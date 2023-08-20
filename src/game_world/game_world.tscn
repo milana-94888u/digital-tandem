@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhtehcsatwgxi"]
+[gd_scene load_steps=10 format=3 uid="uid://dhtehcsatwgxi"]
 
 [ext_resource type="Script" path="res://src/game_world/game_world.gd" id="1_1ymsr"]
 [ext_resource type="PackedScene" uid="uid://m0txqaij1k45" path="res://src/multiplayer/player_wrapper/player_wrapper.tscn" id="2_3ss46"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dscy70cidsylo" path="res://src/virus/virus.tscn" id="4_78r7y"]
 [ext_resource type="PackedScene" uid="uid://dwm7phorujkav" path="res://src/ui/game_chat/game_chat.tscn" id="5_o27hs"]
 [ext_resource type="PackedScene" uid="uid://6kpqpn83qkv4" path="res://src/game_world/objects/door/door.tscn" id="8_o42qh"]
+[ext_resource type="PackedScene" uid="uid://dvgmmsu1php7b" path="res://src/game_world/objects/dark_area/dark_area.tscn" id="9_bcf6b"]
 [ext_resource type="PackedScene" uid="uid://dwwwnrtokmwfb" path="res://src/game_world/objects/front_door/front_door.tscn" id="9_pwgus"]
 
 [node name="GameWorld" type="Node2D"]
@@ -62,6 +63,9 @@ opposite_door = NodePath("../FrontDoor2")
 position = Vector2(1536, 768)
 opposite_door = NodePath("../FrontDoor")
 
+[node name="DarkArea" parent="." instance=ExtResource("9_bcf6b")]
+position = Vector2(2048, 768)
+
 [connection signal="chat_requested" from="MechWrapper/Mech" to="." method="_on_mech_chat_requested"]
 [connection signal="chat_requested" from="VirusWrapper/Virus" to="." method="_on_virus_chat_requested"]
 [connection signal="minigame_canceled" from="VirusWrapper/Virus" to="." method="_on_virus_minigame_canceled"]
@@ -73,3 +77,4 @@ opposite_door = NodePath("../FrontDoor")
 [connection signal="virus_door_entered" from="GameObjects/FrontDoor" to="." method="_on_front_door_virus_door_entered"]
 [connection signal="object_chosen" from="GameObjects/FrontDoor2" to="." method="_on_object_chosen"]
 [connection signal="virus_door_entered" from="GameObjects/FrontDoor2" to="." method="_on_front_door_virus_door_entered"]
+[connection signal="object_chosen" from="DarkArea" to="." method="_on_object_chosen"]

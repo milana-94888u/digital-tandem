@@ -21,19 +21,23 @@ var control_processed := true
 
 @export var max_health := 100:
 	set(value):
+		max_health = value
 		$UICanvas/MechUI.update_max_health(value)
 		$FloatingUI.update_max_health(value)
 @export var health := 100:
 	set(value):
+		health = value
 		$UICanvas/MechUI.update_health(value)
 		$FloatingUI.update_health(value)
 
-@export var max_energy := 100:
+@export var max_energy := 10000:
 	set(value):
+		max_energy = value
 		$UICanvas/MechUI.update_max_energy(value)
 		$FloatingUI.update_max_energy(value)
-@export var energy := 100:
+@export var energy := 10000:
 	set(value):
+		energy = value
 		$UICanvas/MechUI.update_energy(value)
 		$FloatingUI.update_energy(value)
 
@@ -48,6 +52,8 @@ var current_move := MoveType.WALK
 func _physics_process(_delta: float) -> void:
 	set_animation()
 	move_and_slide()
+	if velocity:
+		self.energy -= int(absf(velocity.x) / 120.0) + (5 if velocity.y > 0 else 0)
 
 
 func _process(_delta: float) -> void:

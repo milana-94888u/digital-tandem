@@ -17,15 +17,23 @@ const MIN_ZOOM := 0.34
 const MAX_ZOOM := 2.0
 
 
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not control_processed:
 		return
-	velocity = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") * 500 / $Camera2D.zoom.x
+	velocity = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") * 600 / $Camera2D.zoom.x
+	var is_move := velocity != Vector2.ZERO
 	move_and_slide()
 	if Input.is_action_pressed("zoom_in"):
+		is_move = true
 		$Camera2D.zoom = Vector2.ONE * maxf(MIN_ZOOM, $Camera2D.zoom.x + 0.02)
 	elif Input.is_action_pressed("zoom_out"):
+		is_move = true
 		$Camera2D.zoom = Vector2.ONE * maxf(MIN_ZOOM, $Camera2D.zoom.x - 0.02)
+	if is_move:
+		if not $MovePlayer.playing:
+			$MovePlayer.play()
+	else:
+		$MovePlayer.stop()
 
 
 func _input(event: InputEvent) -> void:

@@ -66,6 +66,7 @@ opposite_door = NodePath("../FrontDoor")
 [connection signal="chat_requested" from="VirusWrapper/Virus" to="." method="_on_virus_chat_requested"]
 [connection signal="minigame_canceled" from="VirusWrapper/Virus" to="." method="_on_virus_minigame_canceled"]
 [connection signal="minigame_completed" from="VirusWrapper/Virus" to="." method="_on_virus_minigame_completed"]
+[connection signal="teleport_to_mech_requested" from="VirusWrapper/Virus" to="." method="_on_virus_teleport_to_mech_requested"]
 [connection signal="chat_closed" from="ChatCanvas/GameChat" to="." method="_on_game_chat_chat_closed"]
 [connection signal="object_chosen" from="GameObjects/Door" to="." method="_on_object_chosen"]
 [connection signal="object_chosen" from="GameObjects/FrontDoor" to="." method="_on_object_chosen"]

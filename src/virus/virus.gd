@@ -7,6 +7,8 @@ signal chat_requested
 signal minigame_completed
 signal minigame_canceled
 
+signal teleport_to_mech_requested
+
 
 var control_processed := true
 
@@ -31,6 +33,8 @@ func _input(event: InputEvent) -> void:
 		return
 	if event.is_action_pressed("ui_chat"):
 		chat_requested.emit()
+	elif event.is_action_pressed("ui_accept"):
+		teleport_to_mech_requested.emit() 
 
 
 func finish_minigame(minigame: Minigame, result: Signal) -> void:

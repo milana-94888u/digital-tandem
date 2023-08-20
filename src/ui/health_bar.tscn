@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bmo0pvpff8pve" path="res://assets/sprites/health bar under.png" id="3_82j06"]
 
 [node name="health bar" type="TextureProgressBar"]
+modulate = Color(0, 0.247059, 1, 1)
 texture_filter = 1
 offset_right = 768.0
 offset_bottom = 64.0

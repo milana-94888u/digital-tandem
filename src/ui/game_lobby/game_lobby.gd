@@ -251,6 +251,7 @@ func _on_accept_button_pressed() -> void:
 		"action": "game_accepted",
 		"nickname": proposer_nickname,
 	})
+	waiting_screen.hide()
 
 
 func _on_reject_button_pressed() -> void:

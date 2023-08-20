@@ -55,6 +55,11 @@ var current_attack := AttackType.NONE
 var current_move := MoveType.WALK
 
 
+func _ready() -> void:
+	for upgrade in MechUpgradeManager.applied_upgrades:
+		apply_upgrade(upgrade)
+
+
 func _physics_process(_delta: float) -> void:
 	set_animation()
 	move_and_slide()
@@ -148,7 +153,16 @@ func remove_active_door(door: FrontDoor) -> void:
 		active_door = null
 
 
-
+func apply_upgrade(upgrade: MechUpgrade.UpgradeType) -> void:
+	match upgrade:
+		MechUpgrade.UpgradeType.JUMP_UNLOCK:
+			jump_unlocked = true
+		MechUpgrade.UpgradeType.RUN_UNLOCK:
+			run_unlocked = true
+		MechUpgrade.UpgradeType.HEALTH_UP:
+			self.max_health += 50
+		MechUpgrade.UpgradeType.ENERGY_UP:
+			self.max_energy += 5000
 
 
 

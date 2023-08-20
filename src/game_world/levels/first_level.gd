@@ -49,3 +49,22 @@ func _on_object_chosen(object: GameObject) -> void:
 
 func _on_front_door_virus_door_entered(teleport_position: Vector2) -> void:
 	virus.position = teleport_position - Vector2(960, 540)
+
+
+func _on_mech_upgrade_upgrade_picked(upgrade: MechUpgrade) -> void:
+	MechUpgradeManager.apply_upgrade(upgrade.upgrade_type)
+	mech.apply_upgrade(upgrade.upgrade_type)
+	match upgrade.upgrade_type:
+		MechUpgrade.UpgradeType.JUMP_UNLOCK:
+			game_chat.send_message("The mech unlocked jump")
+		MechUpgrade.UpgradeType.RUN_UNLOCK:
+			game_chat.send_message("The mech unlocked run")
+		MechUpgrade.UpgradeType.HEALTH_UP:
+			game_chat.send_message("The mech health increased")
+		MechUpgrade.UpgradeType.ENERGY_UP:
+			game_chat.send_message("The mech energy increased")
+	$GameObjects/MechUpgrades.call_deferred("remove_child", upgrade)
+
+@rpc("any_peer", "call_local", "reliable")
+func restart_level() -> void:
+	get_tree().reload_current_scene()

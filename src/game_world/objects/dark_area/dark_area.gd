@@ -5,12 +5,12 @@ var mech: Mech
 
 
 func select_game_object() -> void:
-	if $Light:
+	if has_node("Light"):
 		$Light.color = Color.SKY_BLUE
 
 
 func deselect_game_object() -> void:
-	if $Light:
+	if has_node("Light"):
 		$Light.color = Color.WHITE
 
 

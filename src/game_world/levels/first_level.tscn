@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d2epxyydyvwtw"]
+[gd_scene load_steps=14 format=3 uid="uid://d2epxyydyvwtw"]
 
 [ext_resource type="Script" path="res://src/game_world/levels/first_level.gd" id="1_p6kno"]
 [ext_resource type="PackedScene" uid="uid://c47lcnllnfuiy" path="res://src/minigames/captcha/captcha_minigame.tscn" id="2_acb1b"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dvgmmsu1php7b" path="res://src/game_world/objects/dark_area/dark_area.tscn" id="8_tk1tt"]
 [ext_resource type="PackedScene" uid="uid://dwwwnrtokmwfb" path="res://src/game_world/objects/front_door/front_door.tscn" id="10_adxas"]
 [ext_resource type="PackedScene" uid="uid://6kpqpn83qkv4" path="res://src/game_world/objects/door/door.tscn" id="11_7ooqi"]
+[ext_resource type="PackedScene" uid="uid://bgvhv1qaghnrw" path="res://src/game_world/objects/mech_upgrade.tscn" id="12_c12cn"]
 
 [node name="FirstLevel" type="Node2D"]
 script = ExtResource("1_p6kno")
@@ -163,8 +164,27 @@ position = Vector2(10880, 6912)
 [node name="Door10" parent="GameObjects/Doors" instance=ExtResource("11_7ooqi")]
 position = Vector2(11904, 6912)
 
+[node name="MechUpgrades" type="Node2D" parent="GameObjects"]
+
+[node name="MechUpgrade" parent="GameObjects/MechUpgrades" instance=ExtResource("12_c12cn")]
+position = Vector2(5504, 896)
+upgrade_type = 0
+
+[node name="MechUpgrade2" parent="GameObjects/MechUpgrades" instance=ExtResource("12_c12cn")]
+position = Vector2(8064, 896)
+upgrade_type = 1
+
+[node name="MechUpgrade3" parent="GameObjects/MechUpgrades" instance=ExtResource("12_c12cn")]
+position = Vector2(12928, 7040)
+upgrade_type = 2
+
+[node name="MechUpgrade4" parent="GameObjects/MechUpgrades" instance=ExtResource("12_c12cn")]
+position = Vector2(13184, 10112)
+
+[node name="MechUpgrade5" parent="GameObjects/MechUpgrades" instance=ExtResource("12_c12cn")]
+position = Vector2(21120, 9600)
+
 [node name="ChatCanvas" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="GameChat" parent="ChatCanvas" instance=ExtResource("5_5wip7")]
 
@@ -200,4 +220,9 @@ visible = false
 [connection signal="object_chosen" from="GameObjects/Doors/Door8" to="." method="_on_object_chosen"]
 [connection signal="object_chosen" from="GameObjects/Doors/Door9" to="." method="_on_object_chosen"]
 [connection signal="object_chosen" from="GameObjects/Doors/Door10" to="." method="_on_object_chosen"]
+[connection signal="upgrade_picked" from="GameObjects/MechUpgrades/MechUpgrade" to="." method="_on_mech_upgrade_upgrade_picked"]
+[connection signal="upgrade_picked" from="GameObjects/MechUpgrades/MechUpgrade2" to="." method="_on_mech_upgrade_upgrade_picked"]
+[connection signal="upgrade_picked" from="GameObjects/MechUpgrades/MechUpgrade3" to="." method="_on_mech_upgrade_upgrade_picked"]
+[connection signal="upgrade_picked" from="GameObjects/MechUpgrades/MechUpgrade4" to="." method="_on_mech_upgrade_upgrade_picked"]
+[connection signal="upgrade_picked" from="GameObjects/MechUpgrades/MechUpgrade5" to="." method="_on_mech_upgrade_upgrade_picked"]
 [connection signal="chat_closed" from="ChatCanvas/GameChat" to="." method="_on_game_chat_chat_closed"]

@@ -19,6 +19,7 @@ config/icon="res://assets/icons/lobby_any.png"
 
 Server="*res://src/multiplayer/server.gd"
 GameObjectManager="*res://src/game_world/objects/game_object_manager.gd"
+MechUpgradeManager="*res://src/mech/mech_upgrade_manager.gd"
 
 [display]
 

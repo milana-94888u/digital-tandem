@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgvhv1qaghnrw"]
+
+[ext_resource type="Texture2D" uid="uid://d2tobake51yrr" path="res://assets/sprites/tiles/update.png" id="1_dm67y"]
+[ext_resource type="Script" path="res://src/game_world/objects/mech_upgrade.gd" id="1_lm7al"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_poe8q"]
+radius = 63.5689
+
+[node name="MechUpgrade" type="Node2D"]
+script = ExtResource("1_lm7al")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 10)
+shape = SubResource("CircleShape2D_poe8q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_dm67y")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

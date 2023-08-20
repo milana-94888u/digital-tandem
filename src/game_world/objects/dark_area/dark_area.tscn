@@ -48,6 +48,7 @@ wait_time = 0.1
 
 [node name="DisablePlayer" type="AudioStreamPlayer2D" parent="." index="4"]
 stream = ExtResource("3_uvn7c")
+volume_db = 20.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

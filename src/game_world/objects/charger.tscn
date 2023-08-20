@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7b75rivpv7x"]
+
+[ext_resource type="Texture2D" uid="uid://ds1d4bqtaylck" path="res://assets/sprites/tiles/charge station.png" id="1_0imv1"]
+[ext_resource type="Script" path="res://src/game_world/objects/charger.gd" id="1_cmfud"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4b7ii"]
+size = Vector2(256, 345)
+
+[node name="Charger" type="Node2D"]
+script = ExtResource("1_cmfud")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_0imv1")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 83.5)
+shape = SubResource("RectangleShape2D_4b7ii")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

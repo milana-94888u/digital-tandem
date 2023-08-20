@@ -8,7 +8,7 @@ extends Control
 
 
 func update_max_energy(value: int) -> void:
-	var delta := energy_bar.max_value - value
+	var delta := value - energy_bar.max_value
 	energy_bar.max_value = value
 	update_energy(int(energy_bar.value + delta))
 
@@ -19,9 +19,9 @@ func update_energy(value: int) -> void:
 
 
 func update_max_health(value: int) -> void:
-	var delta := health_bar.max_value - value
+	var delta := value - health_bar.max_value
 	health_bar.max_value = value
-	update_energy(int(health_bar.value + delta))
+	update_health(int(health_bar.value + delta))
 
 
 func update_health(value: int) -> void:

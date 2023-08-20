@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd83v0u6x4gi3"]
+
+[ext_resource type="PackedScene" uid="uid://bjxrh13ovurni" path="res://src/mech/mech.tscn" id="1_kxyrm"]
+
+[node name="Mech2" instance=ExtResource("1_kxyrm")]

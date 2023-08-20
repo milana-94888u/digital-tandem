@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://bcwrcvjlnv04o"]
+[gd_scene load_steps=20 format=3 uid="uid://bcwrcvjlnv04o"]
 
 [ext_resource type="Script" path="res://src/game_world/levels/second_level.gd" id="1_lu66g"]
 [ext_resource type="PackedScene" uid="uid://c47lcnllnfuiy" path="res://src/minigames/captcha/captcha_minigame.tscn" id="2_jjoml"]
 [ext_resource type="Texture2D" uid="uid://cr3t3j5af6j8o" path="res://assets/sprites/tiles/parallax-sky.png" id="2_upcf8"]
+[ext_resource type="PackedScene" uid="uid://bev22674jcl7j" path="res://src/game_world/levels/third_world_wrapper.tscn" id="3_mi8qn"]
 [ext_resource type="Texture2D" uid="uid://ceuy83ef1w3re" path="res://assets/sprites/tiles/parallax-moon.png" id="3_p68fj"]
 [ext_resource type="Texture2D" uid="uid://dpeh47s5g4mf5" path="res://assets/sprites/tiles/parallax-clouds.png" id="3_qu64v"]
 [ext_resource type="TileSet" uid="uid://c7r7c1mevu851" path="res://resources/tilesets/factory_tileset.tres" id="4_4m0cd"]
@@ -10,9 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://bg3kure2g6jfp" path="res://assets/sprites/tiles/parallax-city.png" id="5_qpie4"]
 [ext_resource type="PackedScene" uid="uid://dwm7phorujkav" path="res://src/ui/game_chat/game_chat.tscn" id="6_pqgey"]
 [ext_resource type="PackedScene" uid="uid://dvgmmsu1php7b" path="res://src/game_world/objects/dark_area/dark_area.tscn" id="8_n080h"]
-[ext_resource type="PackedScene" uid="uid://bjxrh13ovurni" path="res://src/mech/mech.tscn" id="9_ldsuh"]
 [ext_resource type="PackedScene" uid="uid://dscy70cidsylo" path="res://src/virus/virus.tscn" id="10_4dqh2"]
+[ext_resource type="PackedScene" uid="uid://c7b75rivpv7x" path="res://src/game_world/objects/charger.tscn" id="10_4y7xf"]
 [ext_resource type="PackedScene" uid="uid://6kpqpn83qkv4" path="res://src/game_world/objects/door/door.tscn" id="10_rtgbj"]
+[ext_resource type="PackedScene" uid="uid://bd83v0u6x4gi3" path="res://src/mech/mech_2.tscn" id="12_i5sva"]
 [ext_resource type="AudioStream" uid="uid://ccctlqutal8fv" path="res://assets/sounds/level2.ogg" id="14_eyqdb"]
 
 [sub_resource type="Gradient" id="Gradient_5ko0k"]
@@ -24,9 +26,13 @@ gradient = SubResource("Gradient_5ko0k")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3puo"]
+size = Vector2(48896, 2850.5)
+
 [node name="SecondLevel" type="Node2D"]
 script = ExtResource("1_lu66g")
 minigame_scene = ExtResource("2_jjoml")
+next_level = ExtResource("3_mi8qn")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_limit_end = Vector2(0, 2160)
@@ -464,15 +470,43 @@ position = Vector2(17792, 1024)
 
 [node name="MechUpgrades" type="Node2D" parent="GameObjects"]
 
+[node name="Chargers" type="Node2D" parent="GameObjects"]
+
+[node name="Charger" parent="GameObjects/Chargers" instance=ExtResource("10_4y7xf")]
+position = Vector2(-128, 2560)
+
+[node name="Charger2" parent="GameObjects/Chargers" instance=ExtResource("10_4y7xf")]
+position = Vector2(4224, 2048)
+
+[node name="Charger3" parent="GameObjects/Chargers" instance=ExtResource("10_4y7xf")]
+position = Vector2(8320, 1792)
+
+[node name="Charger4" parent="GameObjects/Chargers" instance=ExtResource("10_4y7xf")]
+position = Vector2(10880, 1024)
+
+[node name="Charger5" parent="GameObjects/Chargers" instance=ExtResource("10_4y7xf")]
+position = Vector2(12416, -1024)
+
+[node name="Charger6" parent="GameObjects/Chargers" instance=ExtResource("10_4y7xf")]
+position = Vector2(19584, 1280)
+
 [node name="MechWrapper" parent="." instance=ExtResource("5_hberb")]
 position = Vector2(1152, 2012.69)
 
-[node name="Mech" parent="MechWrapper" instance=ExtResource("9_ldsuh")]
+[node name="Mech" parent="MechWrapper" instance=ExtResource("12_i5sva")]
+jump_power = 7000
 
 [node name="VirusWrapper" parent="." instance=ExtResource("5_hberb")]
 position = Vector2(1152, 1664)
 
 [node name="Virus" parent="VirusWrapper" instance=ExtResource("10_4dqh2")]
+
+[node name="WinArea" type="Area2D" parent="."]
+position = Vector2(100, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinArea"]
+position = Vector2(12444, 5504)
+shape = SubResource("RectangleShape2D_h3puo")
 
 [node name="ChatCanvas" type="CanvasLayer" parent="."]
 
@@ -482,6 +516,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_eyqdb")
+volume_db = -20.0
 autoplay = true
 
 [connection signal="object_chosen" from="GameObjects/DarkAreas/DarkArea" to="." method="_on_object_chosen"]
@@ -499,4 +534,5 @@ autoplay = true
 [connection signal="minigame_canceled" from="VirusWrapper/Virus" to="." method="_on_virus_minigame_canceled"]
 [connection signal="minigame_completed" from="VirusWrapper/Virus" to="." method="_on_virus_minigame_completed"]
 [connection signal="teleport_to_mech_requested" from="VirusWrapper/Virus" to="." method="_on_virus_teleport_to_mech_requested"]
+[connection signal="body_entered" from="WinArea" to="." method="_on_win_area_body_entered"]
 [connection signal="chat_closed" from="ChatCanvas/GameChat" to="." method="_on_game_chat_chat_closed"]

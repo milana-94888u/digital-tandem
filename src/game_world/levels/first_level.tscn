@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d2epxyydyvwtw"]
+[gd_scene load_steps=18 format=3 uid="uid://d2epxyydyvwtw"]
 
 [ext_resource type="Script" path="res://src/game_world/levels/first_level.gd" id="1_p6kno"]
 [ext_resource type="PackedScene" uid="uid://c47lcnllnfuiy" path="res://src/minigames/captcha/captcha_minigame.tscn" id="2_acb1b"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dvgmmsu1php7b" path="res://src/game_world/objects/dark_area/dark_area.tscn" id="8_tk1tt"]
 [ext_resource type="PackedScene" uid="uid://dwwwnrtokmwfb" path="res://src/game_world/objects/front_door/front_door.tscn" id="10_adxas"]
 [ext_resource type="PackedScene" uid="uid://6kpqpn83qkv4" path="res://src/game_world/objects/door/door.tscn" id="11_7ooqi"]
+[ext_resource type="PackedScene" uid="uid://c7b75rivpv7x" path="res://src/game_world/objects/charger.tscn" id="11_ay1iy"]
 [ext_resource type="PackedScene" uid="uid://bgvhv1qaghnrw" path="res://src/game_world/objects/mech_upgrade.tscn" id="12_c12cn"]
 [ext_resource type="AudioStream" uid="uid://carfn6m4tjjue" path="res://assets/sounds/level1.ogg" id="15_cdkay"]
 
@@ -109,23 +110,29 @@ position = Vector2(4736, 256)
 
 [node name="FrontDoors" type="Node2D" parent="GameObjects"]
 
-[node name="FrontDoor" parent="GameObjects/FrontDoors" instance=ExtResource("10_adxas")]
+[node name="FrontDoor" parent="GameObjects/FrontDoors" node_paths=PackedStringArray("opposite_door") instance=ExtResource("10_adxas")]
 position = Vector2(9344, 768)
+opposite_door = NodePath("../FrontDoor2")
 
-[node name="FrontDoor2" parent="GameObjects/FrontDoors" instance=ExtResource("10_adxas")]
+[node name="FrontDoor2" parent="GameObjects/FrontDoors" node_paths=PackedStringArray("opposite_door") instance=ExtResource("10_adxas")]
 position = Vector2(9344, 6912)
+opposite_door = NodePath("../FrontDoor")
 
-[node name="FrontDoor3" parent="GameObjects/FrontDoors" instance=ExtResource("10_adxas")]
+[node name="FrontDoor3" parent="GameObjects/FrontDoors" node_paths=PackedStringArray("opposite_door") instance=ExtResource("10_adxas")]
 position = Vector2(11648, 2048)
+opposite_door = NodePath("../FrontDoor4")
 
-[node name="FrontDoor4" parent="GameObjects/FrontDoors" instance=ExtResource("10_adxas")]
+[node name="FrontDoor4" parent="GameObjects/FrontDoors" node_paths=PackedStringArray("opposite_door") instance=ExtResource("10_adxas")]
 position = Vector2(21120, 9984)
+opposite_door = NodePath("../FrontDoor3")
 
-[node name="FrontDoor5" parent="GameObjects/FrontDoors" instance=ExtResource("10_adxas")]
+[node name="FrontDoor5" parent="GameObjects/FrontDoors" node_paths=PackedStringArray("opposite_door") instance=ExtResource("10_adxas")]
 position = Vector2(21120, 2048)
+opposite_door = NodePath("../FrontDoor6")
 
-[node name="FrontDoor6" parent="GameObjects/FrontDoors" instance=ExtResource("10_adxas")]
+[node name="FrontDoor6" parent="GameObjects/FrontDoors" node_paths=PackedStringArray("opposite_door") instance=ExtResource("10_adxas")]
 position = Vector2(12416, 9984)
+opposite_door = NodePath("../FrontDoor5")
 
 [node name="Doors" type="Node2D" parent="GameObjects"]
 
@@ -179,11 +186,34 @@ position = Vector2(13184, 10112)
 [node name="MechUpgrade5" parent="GameObjects/MechUpgrades" instance=ExtResource("12_c12cn")]
 position = Vector2(21120, 9600)
 
+[node name="Chargers" type="Node2D" parent="GameObjects"]
+
+[node name="Charger" parent="GameObjects/Chargers" instance=ExtResource("11_ay1iy")]
+position = Vector2(2432, 768)
+
+[node name="Charger2" parent="GameObjects/Chargers" instance=ExtResource("11_ay1iy")]
+position = Vector2(8576, 768)
+
+[node name="Charger3" parent="GameObjects/Chargers" instance=ExtResource("11_ay1iy")]
+position = Vector2(13440, 2048)
+
+[node name="Charger4" parent="GameObjects/Chargers" instance=ExtResource("11_ay1iy")]
+position = Vector2(14720, 2048)
+
+[node name="Charger5" parent="GameObjects/Chargers" instance=ExtResource("11_ay1iy")]
+position = Vector2(16512, 2048)
+
+[node name="Charger6" parent="GameObjects/Chargers" instance=ExtResource("11_ay1iy")]
+position = Vector2(18304, 2048)
+
+[node name="Charger7" parent="GameObjects/Chargers" instance=ExtResource("11_ay1iy")]
+position = Vector2(21632, 2048)
+
 [node name="MechWrapper" parent="." instance=ExtResource("2_ytu5e")]
 position = Vector2(993.832, 648.691)
 
 [node name="Mech" parent="MechWrapper" instance=ExtResource("3_4e3pu")]
-position = Vector2(-225.832, 375.309)
+position = Vector2(22000, 375.309)
 
 [node name="VirusWrapper" parent="." instance=ExtResource("2_ytu5e")]
 position = Vector2(993.832, 300)
@@ -206,6 +236,7 @@ shape = SubResource("RectangleShape2D_bmnsl")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_cdkay")
+volume_db = -20.0
 autoplay = true
 
 [connection signal="object_chosen" from="GameObjects/DarkAreas/DarkArea4" to="." method="_on_object_chosen"]

@@ -87,6 +87,7 @@ func _on_mech_mech_dead() -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func move_to_next_level() -> void:
+	Server.multiplayer.multiplayer_peer.close()
 	get_tree().change_scene_to_packed(next_level)
 
 

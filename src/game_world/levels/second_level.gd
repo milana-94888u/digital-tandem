@@ -85,6 +85,11 @@ func _on_mech_mech_dead() -> void:
 		restart_level.rpc()
 
 
+@rpc("any_peer", "call_local", "reliable")
+func move_to_next_level() -> void:
+	get_tree().change_scene_to_packed(next_level)
+
+
 func _on_win_area_body_entered(body: Node2D) -> void:
 	if body is Mech and mech.is_multiplayer_authority():
-		get_tree().reload_current_scene()
+		move_to_next_level.rpc()

@@ -87,4 +87,4 @@ func _on_mech_mech_dead() -> void:
 
 func _on_win_area_body_entered(body: Node2D) -> void:
 	if body is Mech and mech.is_multiplayer_authority():
-		get_tree().reload_current_scene()
+		get_tree().change_scene_to_packed(next_level)

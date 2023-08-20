@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bcwrcvjlnv04o"]
+[gd_scene load_steps=17 format=3 uid="uid://bcwrcvjlnv04o"]
 
 [ext_resource type="Script" path="res://src/game_world/levels/second_level.gd" id="1_lu66g"]
 [ext_resource type="PackedScene" uid="uid://c47lcnllnfuiy" path="res://src/minigames/captcha/captcha_minigame.tscn" id="2_jjoml"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bjxrh13ovurni" path="res://src/mech/mech.tscn" id="9_ldsuh"]
 [ext_resource type="PackedScene" uid="uid://dscy70cidsylo" path="res://src/virus/virus.tscn" id="10_4dqh2"]
 [ext_resource type="PackedScene" uid="uid://6kpqpn83qkv4" path="res://src/game_world/objects/door/door.tscn" id="10_rtgbj"]
+[ext_resource type="AudioStream" uid="uid://ccctlqutal8fv" path="res://assets/sounds/level2.ogg" id="14_eyqdb"]
 
 [sub_resource type="Gradient" id="Gradient_5ko0k"]
 offsets = PackedFloat32Array(0, 0.703226)
@@ -426,16 +427,6 @@ position = Vector2(-509, -6)
 texture = SubResource("GradientTexture2D_nrxeu")
 texture_scale = 6.71
 
-[node name="MechWrapper" parent="." instance=ExtResource("5_hberb")]
-position = Vector2(1152, 2012.69)
-
-[node name="Mech" parent="MechWrapper" instance=ExtResource("9_ldsuh")]
-
-[node name="VirusWrapper" parent="." instance=ExtResource("5_hberb")]
-position = Vector2(1152, 1664)
-
-[node name="Virus" parent="VirusWrapper" instance=ExtResource("10_4dqh2")]
-
 [node name="GameObjects" type="Node2D" parent="."]
 
 [node name="DarkAreas" type="Node2D" parent="GameObjects"]
@@ -473,18 +464,26 @@ position = Vector2(17792, 1024)
 
 [node name="MechUpgrades" type="Node2D" parent="GameObjects"]
 
+[node name="MechWrapper" parent="." instance=ExtResource("5_hberb")]
+position = Vector2(1152, 2012.69)
+
+[node name="Mech" parent="MechWrapper" instance=ExtResource("9_ldsuh")]
+
+[node name="VirusWrapper" parent="." instance=ExtResource("5_hberb")]
+position = Vector2(1152, 1664)
+
+[node name="Virus" parent="VirusWrapper" instance=ExtResource("10_4dqh2")]
+
 [node name="ChatCanvas" type="CanvasLayer" parent="."]
 
 [node name="GameChat" parent="ChatCanvas" instance=ExtResource("6_pqgey")]
 mouse_filter = 1
 metadata/_edit_use_anchors_ = true
 
-[connection signal="chat_requested" from="MechWrapper/Mech" to="." method="_on_mech_chat_requested"]
-[connection signal="mech_dead" from="MechWrapper/Mech" to="." method="_on_mech_mech_dead"]
-[connection signal="chat_requested" from="VirusWrapper/Virus" to="." method="_on_virus_chat_requested"]
-[connection signal="minigame_canceled" from="VirusWrapper/Virus" to="." method="_on_virus_minigame_canceled"]
-[connection signal="minigame_completed" from="VirusWrapper/Virus" to="." method="_on_virus_minigame_completed"]
-[connection signal="teleport_to_mech_requested" from="VirusWrapper/Virus" to="." method="_on_virus_teleport_to_mech_requested"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_eyqdb")
+autoplay = true
+
 [connection signal="object_chosen" from="GameObjects/DarkAreas/DarkArea" to="." method="_on_object_chosen"]
 [connection signal="object_chosen" from="GameObjects/DarkAreas/DarkArea2" to="." method="_on_object_chosen"]
 [connection signal="object_chosen" from="GameObjects/DarkAreas/DarkArea3" to="." method="_on_object_chosen"]
@@ -494,4 +493,10 @@ metadata/_edit_use_anchors_ = true
 [connection signal="object_chosen" from="GameObjects/Doors/Door2" to="." method="_on_object_chosen"]
 [connection signal="object_chosen" from="GameObjects/Doors/Door3" to="." method="_on_object_chosen"]
 [connection signal="object_chosen" from="GameObjects/Doors/Door4" to="." method="_on_object_chosen"]
+[connection signal="chat_requested" from="MechWrapper/Mech" to="." method="_on_mech_chat_requested"]
+[connection signal="mech_dead" from="MechWrapper/Mech" to="." method="_on_mech_mech_dead"]
+[connection signal="chat_requested" from="VirusWrapper/Virus" to="." method="_on_virus_chat_requested"]
+[connection signal="minigame_canceled" from="VirusWrapper/Virus" to="." method="_on_virus_minigame_canceled"]
+[connection signal="minigame_completed" from="VirusWrapper/Virus" to="." method="_on_virus_minigame_completed"]
+[connection signal="teleport_to_mech_requested" from="VirusWrapper/Virus" to="." method="_on_virus_teleport_to_mech_requested"]
 [connection signal="chat_closed" from="ChatCanvas/GameChat" to="." method="_on_game_chat_chat_closed"]

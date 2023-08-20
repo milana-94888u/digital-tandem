@@ -10,6 +10,7 @@ var virus_active_object: GameObject
 
 
 @export var minigame_scene: PackedScene
+@export var next_level: PackedScene
 
 
 func _on_mech_chat_requested() -> void:
@@ -67,16 +68,23 @@ func _on_mech_upgrade_upgrade_picked(upgrade: MechUpgrade) -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func restart_level() -> void:
+	mech.is_alive = false
 	$MechWrapper/Mech/AnimatedSprite2D.play("die")
+	$MechWrapper/Mech/DeathPlayer.play()
 	_on_virus_teleport_to_mech_requested()
 	mech.control_processed = false
 	virus.control_processed = false
 	game_chat.send_message("The mech died")
 	game_chat.show_chat()
-	await $MechWrapper/Mech/AnimatedSprite2D.animation_finished
+	await $MechWrapper/Mech/DeathPlayer.finished
 	get_tree().reload_current_scene()
 
 
 func _on_mech_mech_dead() -> void:
-	restart_level.rpc()
+	if mech.is_multiplayer_authority():
+		restart_level.rpc()
 
+
+func _on_win_area_body_entered(body: Node2D) -> void:
+	if body is Mech and mech.is_multiplayer_authority():
+		get_tree().reload_current_scene()

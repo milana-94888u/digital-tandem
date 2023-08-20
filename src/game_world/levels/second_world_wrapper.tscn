@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfcc7aaqet4xa"]
+
+[ext_resource type="PackedScene" uid="uid://brdhb0niwn1is" path="res://src/multiplayer/world_wrapper/world_wrapper.tscn" id="1_l6ywo"]
+[ext_resource type="PackedScene" uid="uid://bcwrcvjlnv04o" path="res://src/game_world/levels/second_level.tscn" id="2_glwo6"]
+
+[node name="SecondWorldWrapper" instance=ExtResource("1_l6ywo")]
+
+[node name="GameWorld" parent="." index="0" instance=ExtResource("2_glwo6")]

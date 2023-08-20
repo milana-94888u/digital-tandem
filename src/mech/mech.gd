@@ -40,7 +40,7 @@ var control_processed := true
 		max_energy = value
 		$UICanvas/MechUI.update_max_energy(value)
 		$FloatingUI.update_max_energy(value)
-@export var energy := 200:
+@export var energy := 10000:
 	set(value):
 		energy = value
 		$UICanvas/MechUI.update_energy(value)
@@ -60,7 +60,8 @@ func _physics_process(_delta: float) -> void:
 	if velocity:
 		self.energy -= int(absf(velocity.x) / speed * 5.0) + (5 if velocity.y > 0 else 0)
 	if velocity and is_on_floor():
-		$StepsPlayer.play()
+		if not $StepsPlayer.playing:
+			$StepsPlayer.play()
 	else:
 		$StepsPlayer.stop()
 
@@ -83,8 +84,8 @@ func add_friction() -> void:
 
 
 func process_jump() -> void:
-	if control_processed and Input.is_action_just_pressed("ui_up"):
-		if is_on_floor():
+	if control_processed and Input.is_action_just_pressed("jump"):
+		if is_on_floor() and jump_unlocked and energy > 0:
 			velocity.y = -jump_power
 	velocity.y += gravity
 

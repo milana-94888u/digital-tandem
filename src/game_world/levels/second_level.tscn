@@ -1,24 +1,31 @@
-[gd_scene load_steps=11 format=3 uid="uid://bo3dkfkyp43rg"]
+[gd_scene load_steps=16 format=3 uid="uid://bcwrcvjlnv04o"]
 
-[ext_resource type="Texture2D" uid="uid://cr3t3j5af6j8o" path="res://assets/sprites/tiles/parallax-sky.png" id="1_0tdqb"]
-[ext_resource type="Texture2D" uid="uid://dpeh47s5g4mf5" path="res://assets/sprites/tiles/parallax-clouds.png" id="2_g51vy"]
-[ext_resource type="Texture2D" uid="uid://bg3kure2g6jfp" path="res://assets/sprites/tiles/parallax-city.png" id="3_6d51g"]
-[ext_resource type="TileSet" uid="uid://c7r7c1mevu851" path="res://resources/tilesets/factory_tileset.tres" id="3_h602c"]
-[ext_resource type="Texture2D" uid="uid://ceuy83ef1w3re" path="res://assets/sprites/tiles/parallax-moon.png" id="4_fsdw5"]
-[ext_resource type="PackedScene" uid="uid://bjxrh13ovurni" path="res://src/mech/mech.tscn" id="5_y4gym"]
-[ext_resource type="Texture2D" uid="uid://d2tobake51yrr" path="res://assets/sprites/tiles/update.png" id="7_1lmux"]
-[ext_resource type="PackedScene" uid="uid://dvgmmsu1php7b" path="res://src/game_world/objects/dark_area/dark_area.tscn" id="8_j6lml"]
+[ext_resource type="Script" path="res://src/game_world/levels/second_level.gd" id="1_lu66g"]
+[ext_resource type="PackedScene" uid="uid://c47lcnllnfuiy" path="res://src/minigames/captcha/captcha_minigame.tscn" id="2_jjoml"]
+[ext_resource type="Texture2D" uid="uid://cr3t3j5af6j8o" path="res://assets/sprites/tiles/parallax-sky.png" id="2_upcf8"]
+[ext_resource type="Texture2D" uid="uid://ceuy83ef1w3re" path="res://assets/sprites/tiles/parallax-moon.png" id="3_p68fj"]
+[ext_resource type="Texture2D" uid="uid://dpeh47s5g4mf5" path="res://assets/sprites/tiles/parallax-clouds.png" id="3_qu64v"]
+[ext_resource type="TileSet" uid="uid://c7r7c1mevu851" path="res://resources/tilesets/factory_tileset.tres" id="4_4m0cd"]
+[ext_resource type="PackedScene" uid="uid://m0txqaij1k45" path="res://src/multiplayer/player_wrapper/player_wrapper.tscn" id="5_hberb"]
+[ext_resource type="Texture2D" uid="uid://bg3kure2g6jfp" path="res://assets/sprites/tiles/parallax-city.png" id="5_qpie4"]
+[ext_resource type="PackedScene" uid="uid://dwm7phorujkav" path="res://src/ui/game_chat/game_chat.tscn" id="6_pqgey"]
+[ext_resource type="PackedScene" uid="uid://dvgmmsu1php7b" path="res://src/game_world/objects/dark_area/dark_area.tscn" id="8_n080h"]
+[ext_resource type="PackedScene" uid="uid://bjxrh13ovurni" path="res://src/mech/mech.tscn" id="9_ldsuh"]
+[ext_resource type="PackedScene" uid="uid://dscy70cidsylo" path="res://src/virus/virus.tscn" id="10_4dqh2"]
+[ext_resource type="PackedScene" uid="uid://6kpqpn83qkv4" path="res://src/game_world/objects/door/door.tscn" id="10_rtgbj"]
 
-[sub_resource type="Gradient" id="Gradient_wogpu"]
+[sub_resource type="Gradient" id="Gradient_5ko0k"]
 offsets = PackedFloat32Array(0, 0.703226)
 colors = PackedColorArray(1, 0.784314, 0.0784314, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_4282u"]
-gradient = SubResource("Gradient_wogpu")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nrxeu"]
+gradient = SubResource("Gradient_5ko0k")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="level 2" type="Node2D"]
+[node name="SecondLevel" type="Node2D"]
+script = ExtResource("1_lu66g")
+minigame_scene = ExtResource("2_jjoml")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_limit_end = Vector2(0, 2160)
@@ -30,7 +37,7 @@ motion_mirroring = Vector2(1920, 1080)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/sky"]
 position = Vector2(1920, 1080)
 scale = Vector2(2, 2)
-texture = ExtResource("1_0tdqb")
+texture = ExtResource("2_upcf8")
 
 [node name="moon" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.005, 0.005)
@@ -38,7 +45,7 @@ motion_scale = Vector2(0.005, 0.005)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/moon"]
 position = Vector2(2290, 1241)
 scale = Vector2(2, 2)
-texture = ExtResource("4_fsdw5")
+texture = ExtResource("3_p68fj")
 
 [node name="cloud 1" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.1, 0.1)
@@ -47,7 +54,7 @@ motion_mirroring = Vector2(3840, 700)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/cloud 1"]
 position = Vector2(1921, 1586)
 scale = Vector2(2, 2)
-texture = ExtResource("2_g51vy")
+texture = ExtResource("3_qu64v")
 
 [node name="buildings" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.1, 0.1)
@@ -56,7 +63,7 @@ motion_mirroring = Vector2(3840, 0)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/buildings"]
 position = Vector2(1909, 1674)
 scale = Vector2(2, 2)
-texture = ExtResource("3_6d51g")
+texture = ExtResource("5_qpie4")
 
 [node name="cloud 2" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.2, 0.2)
@@ -65,10 +72,10 @@ motion_mirroring = Vector2(3840, 700)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/cloud 2"]
 position = Vector2(1917, 460)
 scale = Vector2(2, 2)
-texture = ExtResource("2_g51vy")
+texture = ExtResource("3_qu64v")
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = ExtResource("3_h602c")
+tile_set = ExtResource("4_4m0cd")
 format = 2
 layer_0/name = "Walls"
 layer_0/tile_data = PackedInt32Array(720896, 196608, 0, 720897, 65536, 5, 655361, 0, 4, 655362, 65536, 5, 589826, 0, 4, 589827, 65536, 5, 524291, 0, 4, 524292, 196608, 0, 262143, 262144, 0, 327679, 458752, 0, 393215, 262144, 0, 196607, 262144, 0, 131071, 262144, 0, 65535, 262144, 0, -1, 262144, 0, -65537, 262144, 0, -131073, 262144, 0, 524293, 196608, 0, 524294, 196608, 0, 524295, 196608, 0, 524296, 196608, 0, 524297, 196608, 0, 524298, 196608, 0, 524299, 196608, 0, 524300, 196608, 0, -196609, 262144, 0, -262145, 262144, 0, -327681, 262144, 0, -393217, 262144, 0, -458753, 262144, 0, -524289, 262144, 0, -589825, 262144, 1, 524301, 196608, 0, 524302, 196608, 0, 524303, 65536, 4, 196630, 196608, 0, 589846, 1, 0, 196631, 196608, 0, 589847, 1, 1, 196632, 196608, 0, 589848, 1, 1, 196633, 196608, 0, 589849, 1, 2, 196634, 196608, 0, 589850, 196608, 0, 196635, 65536, 4, 589851, 65536, 5, 524322, 65536, 5, 327694, 196608, 2, 196623, 0, 4, 262159, 262144, 0, 327695, 65536, 5, 589839, 0, 5, 196624, 196608, 0, 589840, 196608, 0, 196625, 196608, 0, 589841, 1, 3, 196626, 196608, 0, 589842, 1, 4, 196627, 196608, 0, 589843, 1, 4, 196628, 196608, 0, 589844, 1, 5, 196629, 196608, 0, 589845, 196608, 0, 262171, 262144, 0, 327707, 0, 5, 524315, 0, 4, 327708, 327680, 2, 524316, 196608, 0, 524317, 196608, 0, 524318, 196608, 0, 524319, 196608, 0, 524320, 196608, 0, 524321, 196608, 0, 262150, 65536, 4, 262144, 196608, 0, 262145, 196608, 0, 262146, 196608, 0, 262147, 196608, 0, 262148, 196608, 0, 262149, 196608, 0, 327686, 0, 5, 327687, 327680, 2, 327720, 196608, 0, 327721, 196608, 0, 42, 196608, 0, 327722, 196608, 0, 327723, 196608, 0, 327724, 393216, 0, 327725, 196608, 0, 327726, 196608, 0, 47, 262144, 0, 327727, 393216, 0, -196559, 196608, 0, -196558, 1, 3, -196557, 1, 4, -196556, 1, 4, 458786, 0, 4, 393251, 0, 4, 458787, 65536, 5, 327716, 0, 4, 393252, 65536, 5, 327717, 196608, 0, 327718, 196608, 0, 39, 196608, 0, 327719, 196608, 0, 40, 196608, 0, 41, 196608, 0, -196562, 196608, 2, -196561, 458752, 1, -131025, 262144, 0, -65489, 262144, 0, 65583, 262144, 0, 131119, 393216, 1, 196655, 262144, 0, 262191, 262144, 0, -196560, 196608, 0, -196543, 196608, 0, -196542, 65536, 4, -131006, 0, 5, -131005, 65536, 4, -65469, 0, 5, -65468, 65536, 4, 68, 0, 5, 69, 65536, 4, 65605, 262144, 0, 327728, 196608, 0, 327729, 196608, 0, 327730, 196608, 0, 327731, 393216, 0, 327732, 196608, 0, 327733, 196608, 0, 327734, 196608, 0, 327736, 196608, 0, 327735, 196608, 0, 327737, 327680, 2, 327738, 1, 3, 327739, 1, 4, 327740, 1, 4, 327741, 1, 4, 327743, 196608, 0, 327742, 1, 5, 327744, 196608, 0, 327745, 196608, 0, 327746, 196608, 0, 327747, 196608, 0, 327748, 196608, 0, 327749, 196608, 0, 327750, 196608, 0, 327751, 196608, 0, 327752, 196608, 0, 131141, 393216, 0, 131142, 327680, 2, 131140, 196608, 0, 131139, 196608, 0, 131138, 196608, 0, 131137, 196608, 0, 131136, 0, 5, 65600, 262144, 0, 64, 262144, 0, -65472, 65536, 4, -65473, 196608, 0, -65474, 196608, 0, -65475, 196608, 0, -65476, 196608, 0, -65477, 196608, 0, -65478, 196608, 0, -65479, 262144, 2, 57, 262144, 0, 65593, 262144, 0, 131129, 262144, 3, 327753, 196608, 0, 327754, 65536, 4, 393290, 0, 5, 393291, 196608, 0, 393292, 196608, 0, 393293, 196608, 0, 393294, 196608, 0, 393295, 196608, 0, 393296, 196608, 0, 393297, 65536, 5, 327761, 0, 4, 327762, 196608, 0, 327763, 196608, 0, 327764, 196608, 0, 327765, 196608, 0, 196685, 196608, 2, 196686, 327680, 2, 393235, 1, 3, 393236, 1, 4, 393237, 1, 4, 393238, 1, 4, 393239, 1, 5, 131118, 196608, 2, -196555, 1, 5, -196554, 1, 6, -196550, 1, 7, -196549, 1, 0, -196548, 1, 1, -196547, 1, 1, -196546, 1, 2, -196545, 196608, 0, -196544, 196608, 0, -524241, 262144, 0, -589777, 0, 4, -589776, 196608, 0, -589775, 196608, 0, -589774, 196608, 0, -589773, 196608, 0, -589772, 196608, 0, -589771, 196608, 0, -589770, 196608, 0, -589769, 196608, 0, -589768, 196608, 0, -589767, 196608, 0, -589766, 196608, 0, -589765, 196608, 0, -589764, 196608, 0, -589763, 196608, 0, -589762, 196608, 0, -589761, 196608, 0, -589760, 65536, 4, -524224, 262144, 0, -720847, 196608, 2, -720846, 196608, 0, -720845, 196608, 0, -720844, 196608, 0, -720843, 196608, 0, -720842, 196608, 0, -720841, 196608, 0, -720840, 196608, 0, -720839, 196608, 0, -720838, 196608, 0, -720837, 196608, 0, -720836, 196608, 0, -720835, 196608, 0, -720834, 327680, 2, 65553, 196608, 2, 65554, 196608, 0, 65555, 65536, 5, 65561, 327680, 2, 65560, 196608, 0, 65559, 0, 5, 20, 196608, 0, 21, 196608, 0, 22, 196608, 0, 19, 0, 4, 23, 65536, 4, -196552, 196608, 0, -196553, 196608, 0, -393174, 196608, 0, -393175, 196608, 0, -393176, 196608, 0, -393177, 196608, 0, -393178, 196608, 2, -458705, 262144, 0, -393169, 65536, 5, -393170, 196608, 2, -458688, 262144, 0, -393152, 0, 5, -393151, 327680, 2, -262088, 327680, 0, 77, 196608, 2, 78, 327680, 2, -196531, 196608, 2, -196530, 327680, 2, -393139, 196608, 2, -393138, 327680, 2, -589747, 196608, 2, -589746, 327680, 2, -786355, 196608, 2, -786354, 327680, 2, -982963, 196608, 2, -982962, 327680, 2, 327766, 196608, 0, 327767, 196608, 0, 327768, 65536, 5, 262232, 262144, 0, 196696, 0, 4, 196697, 196608, 0, 196698, 65536, 4, 262234, 262144, 0, 327770, 262144, 0, 393306, 262144, 0, 458842, 262144, 0, 524378, 262144, 0, 589914, 262144, 0, 655450, 262144, 0, 720986, 262144, 0, 786522, 262144, 0, 852058, 262144, 0, 917594, 262144, 0, 983130, 262144, 3, -393173, 327680, 2, 43, 196608, 0, 38, 196608, 2, -131015, 262144, 0, -196551, 65536, 4, -65480, 196608, 0, -65481, 196608, 0, -65482, 196608, 0, -65483, 196608, 0, -65484, 196608, 0, -65485, 0, 4, 51, 262144, 0, 65587, 262144, 0, 131123, 262144, 0, 196659, 262144, 0, 262195, 262144, 0, 196653, 327680, 0, 262188, 262144, 1, 44, 327680, 2, 458751, 65536, 5, 786431, 196608, 0, 786430, 196608, 0, 458750, 196608, 0, 458749, 0, 4, 524285, 262144, 0, 589821, 393216, 0, 589822, 327680, 2, 589820, 196608, 2, 786429, 196608, 2)
@@ -101,350 +108,390 @@ layer_4/y_sort_origin = 0
 layer_4/z_index = 10
 layer_4/tile_data = PackedInt32Array(458766, 196610, 1, 524302, 2, 2, 524303, 65538, 2, 458767, 196610, 1, 589842, 131074, 2, 589843, 131074, 2, 589844, 65538, 0, 589841, 131074, 0, 262170, 2, 0, 262160, 2, 0, -196608, 2, 0, 589846, 131074, 0, 589847, 131074, 2, 589848, 131074, 2, 589849, 65538, 0, 393235, 131074, 0, 393236, 131074, 2, 393237, 131074, 2, 393238, 131074, 2, 393239, 65538, 0, -393179, 2, 0, -262098, 196610, 1, -196562, 2, 2, -196561, 65538, 2, -262097, 196610, 1, -196558, 131074, 0, -196557, 131074, 2, -196556, 131074, 2, -196555, 65538, 0, -196554, 2, 0, -196550, 2, 0, -196549, 131074, 0, -196548, 131074, 2, -196547, 131074, 2, -196546, 65538, 0, -524225, 2, 0, -524240, 2, 0, 58, 2, 0, 63, 2, 0, 327742, 131074, 2, 327741, 131074, 2, 327740, 131074, 2, 327739, 131074, 2, 327738, 131074, 2, 262207, 196610, 1, 327743, 65538, 2, 327737, 2, 2, 262201, 196610, 1, 262214, 196610, 1, 327750, 65538, 2, 327749, 2, 2, 262213, 196610, 1, 131143, 2, 0, 327757, 196610, 0, 262221, 131074, 1, 196685, 131074, 1, 131149, 131074, 1, 65613, 131074, 1, 77, 131074, 1, -65459, 131074, 1, -130995, 131074, 1, -196531, 131074, 1, -262067, 131074, 1, -327603, 131074, 1, -393139, 131074, 1, -458675, 131074, 1, -524211, 131074, 1, -589747, 131074, 1, -655283, 131074, 1, -720819, 131074, 1, -786355, 131074, 1, -851891, 131074, 1, -917427, 131074, 1, -982963, 65538, 1, 327758, 196610, 0, 262222, 131074, 1, 196686, 131074, 1, 131150, 131074, 1, 65614, 131074, 1, 78, 131074, 1, -65458, 131074, 1, -130994, 131074, 1, -196530, 131074, 1, -589746, 131074, 1, -524210, 131074, 1, -458674, 131074, 1, -393138, 131074, 1, -327602, 131074, 1, -262066, 131074, 1, -982962, 2, 1, -917426, 131074, 1, -851890, 131074, 1, -786354, 131074, 1, -720818, 131074, 1, -655282, 131074, 1, -982964, 131074, 0, -982961, 65538, 0, 196699, 2, 0, -262079, 196610, 1, -196543, 65538, 2, -196544, 2, 2, -262080, 196610, 1)
 
-[node name="Mech" parent="." instance=ExtResource("5_y4gym")]
-position = Vector2(1182, 1896)
-
-[node name="lights" type="Node2D" parent="."]
-position = Vector2(642, 1545)
-
-[node name="PointLight2D" type="PointLight2D" parent="lights"]
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(-5, -10)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D5" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(2, 506)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D6" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(-509, 1024)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D7" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(1024, 246)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D8" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(3327, 251)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D9" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(4354, -255)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D10" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(5381, -263)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D11" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(5124, -1033)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D12" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(4607, -1033)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D13" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(4354, 511)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D14" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(5377, 500)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D61" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(6393, 252)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D15" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(9220, -519)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D16" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(10499, -515)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D17" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(10499, -1032)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D18" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(9223, -1039)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D19" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(10506, -1805)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D20" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(9208, -1805)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D21" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(10500, -2322)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D22" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(9217, -2319)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D23" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(10506, -2824)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D24" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(9214, -2818)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D25" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(11264, -527)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D26" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(11270, -1285)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D27" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(11267, -1800)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D28" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(11523, -2563)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D29" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(12547, -2581)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D30" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(12538, -3075)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D31" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(12551, -3564)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D32" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(13823, -3564)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D33" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(13827, -3076)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D34" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(13823, -2577)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D35" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(14853, -2573)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D36" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(14853, -3072)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D37" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(14846, -3578)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D38" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(15627, -535)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D39" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(15621, -1027)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D40" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(14331, -1050)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D41" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(15615, -1480)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D42" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(14337, -1474)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D43" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(14337, -529)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D44" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(14077, -529)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D45" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(15882, -535)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D46" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(17143, -524)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D47" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(19203, -267)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D48" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(19199, -1033)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D49" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(19198, -2588)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D51" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(19198, -3343)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D52" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(19210, -4098)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D53" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(19194, -4883)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D50" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(19209, -1799)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D54" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(19457.7, -267.28)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D55" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(19453.7, -1033.28)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D56" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(19452.7, -2588.28)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D57" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(19452.7, -3343.28)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D58" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(19464.7, -4098.28)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D59" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(19448.7, -4883.28)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D60" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(19463.7, -1799.28)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D2" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(-504, 500)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D3" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(-509, -6)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
-[node name="PointLight2D4" type="PointLight2D" parent="lights/PointLight2D"]
-position = Vector2(-509, -6)
-texture = SubResource("GradientTexture2D_4282u")
-texture_scale = 6.71
-
 [node name="shadow night" type="DirectionalLight2D" parent="."]
 color = Color(0.176471, 0.203922, 0.560784, 1)
 energy = 0.4
 blend_mode = 2
 max_distance = 5000.0
 
-[node name="Update" type="Sprite2D" parent="."]
-position = Vector2(5504, 2142)
-texture = ExtResource("7_1lmux")
+[node name="Lights" type="Node2D" parent="."]
+position = Vector2(642, 1545)
 
-[node name="Update2" type="Sprite2D" parent="."]
-position = Vector2(14000, 1063)
-texture = ExtResource("7_1lmux")
+[node name="PointLight2D" type="PointLight2D" parent="Lights"]
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
 
-[node name="Update3" type="Sprite2D" parent="."]
-position = Vector2(19968, 656)
-texture = ExtResource("7_1lmux")
+[node name="PointLight2D2" type="PointLight2D" parent="Lights"]
+position = Vector2(-5, -10)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
 
-[node name="DarkArea9" parent="." instance=ExtResource("8_j6lml")]
-position = Vector2(13939, 680)
+[node name="PointLight2D5" type="PointLight2D" parent="Lights"]
+position = Vector2(2, 506)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
 
-[node name="DarkArea10" parent="DarkArea9" instance=ExtResource("8_j6lml")]
-position = Vector2(1695, -8)
+[node name="PointLight2D6" type="PointLight2D" parent="Lights"]
+position = Vector2(-509, 1024)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
 
-[node name="DarkArea11" parent="DarkArea9" instance=ExtResource("8_j6lml")]
-position = Vector2(-367, -2094)
+[node name="PointLight2D7" type="PointLight2D" parent="Lights"]
+position = Vector2(1024, 246)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
 
-[node name="DarkArea12" parent="DarkArea9" instance=ExtResource("8_j6lml")]
-position = Vector2(1515, -2094)
+[node name="PointLight2D8" type="PointLight2D" parent="Lights"]
+position = Vector2(3327, 251)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
 
-[node name="DarkArea8" parent="DarkArea9" instance=ExtResource("8_j6lml")]
-position = Vector2(-8419, 1032)
+[node name="PointLight2D9" type="PointLight2D" parent="Lights"]
+position = Vector2(4354, -255)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D10" type="PointLight2D" parent="Lights"]
+position = Vector2(5381, -263)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D11" type="PointLight2D" parent="Lights"]
+position = Vector2(5124, -1033)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D12" type="PointLight2D" parent="Lights"]
+position = Vector2(4607, -1033)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D13" type="PointLight2D" parent="Lights"]
+position = Vector2(4354, 511)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D14" type="PointLight2D" parent="Lights"]
+position = Vector2(5377, 500)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D61" type="PointLight2D" parent="Lights"]
+position = Vector2(6393, 252)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D15" type="PointLight2D" parent="Lights"]
+position = Vector2(9220, -519)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D16" type="PointLight2D" parent="Lights"]
+position = Vector2(10499, -515)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D17" type="PointLight2D" parent="Lights"]
+position = Vector2(10499, -1032)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D18" type="PointLight2D" parent="Lights"]
+position = Vector2(9223, -1039)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D19" type="PointLight2D" parent="Lights"]
+position = Vector2(10506, -1805)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D20" type="PointLight2D" parent="Lights"]
+position = Vector2(9208, -1805)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D21" type="PointLight2D" parent="Lights"]
+position = Vector2(10500, -2322)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D22" type="PointLight2D" parent="Lights"]
+position = Vector2(9217, -2319)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D23" type="PointLight2D" parent="Lights"]
+position = Vector2(10506, -2824)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D24" type="PointLight2D" parent="Lights"]
+position = Vector2(9214, -2818)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D25" type="PointLight2D" parent="Lights"]
+position = Vector2(11264, -527)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D26" type="PointLight2D" parent="Lights"]
+position = Vector2(11270, -1285)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D27" type="PointLight2D" parent="Lights"]
+position = Vector2(11267, -1800)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D28" type="PointLight2D" parent="Lights"]
+position = Vector2(11523, -2563)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D29" type="PointLight2D" parent="Lights"]
+position = Vector2(12547, -2581)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D30" type="PointLight2D" parent="Lights"]
+position = Vector2(12538, -3075)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D31" type="PointLight2D" parent="Lights"]
+position = Vector2(12551, -3564)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D32" type="PointLight2D" parent="Lights"]
+position = Vector2(13823, -3564)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D33" type="PointLight2D" parent="Lights"]
+position = Vector2(13827, -3076)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D34" type="PointLight2D" parent="Lights"]
+position = Vector2(13823, -2577)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D35" type="PointLight2D" parent="Lights"]
+position = Vector2(14853, -2573)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D36" type="PointLight2D" parent="Lights"]
+position = Vector2(14853, -3072)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D37" type="PointLight2D" parent="Lights"]
+position = Vector2(14846, -3578)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D38" type="PointLight2D" parent="Lights"]
+position = Vector2(15627, -535)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D39" type="PointLight2D" parent="Lights"]
+position = Vector2(15621, -1027)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D40" type="PointLight2D" parent="Lights"]
+position = Vector2(14331, -1050)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D41" type="PointLight2D" parent="Lights"]
+position = Vector2(15615, -1480)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D42" type="PointLight2D" parent="Lights"]
+position = Vector2(14337, -1474)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D43" type="PointLight2D" parent="Lights"]
+position = Vector2(14337, -529)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D44" type="PointLight2D" parent="Lights"]
+position = Vector2(14077, -529)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D45" type="PointLight2D" parent="Lights"]
+position = Vector2(15882, -535)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D46" type="PointLight2D" parent="Lights"]
+position = Vector2(17143, -524)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D47" type="PointLight2D" parent="Lights"]
+position = Vector2(19203, -267)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D48" type="PointLight2D" parent="Lights"]
+position = Vector2(19199, -1033)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D49" type="PointLight2D" parent="Lights"]
+position = Vector2(19198, -2588)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D51" type="PointLight2D" parent="Lights"]
+position = Vector2(19198, -3343)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D52" type="PointLight2D" parent="Lights"]
+position = Vector2(19210, -4098)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D53" type="PointLight2D" parent="Lights"]
+position = Vector2(19194, -4883)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D50" type="PointLight2D" parent="Lights"]
+position = Vector2(19209, -1799)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D54" type="PointLight2D" parent="Lights"]
+position = Vector2(19457.7, -267.28)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D55" type="PointLight2D" parent="Lights"]
+position = Vector2(19453.7, -1033.28)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D56" type="PointLight2D" parent="Lights"]
+position = Vector2(19452.7, -2588.28)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D57" type="PointLight2D" parent="Lights"]
+position = Vector2(19452.7, -3343.28)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D58" type="PointLight2D" parent="Lights"]
+position = Vector2(19464.7, -4098.28)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D59" type="PointLight2D" parent="Lights"]
+position = Vector2(19448.7, -4883.28)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D60" type="PointLight2D" parent="Lights"]
+position = Vector2(19463.7, -1799.28)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D3" type="PointLight2D" parent="Lights"]
+position = Vector2(-504, 500)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D4" type="PointLight2D" parent="Lights"]
+position = Vector2(-509, -6)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="PointLight2D62" type="PointLight2D" parent="Lights"]
+position = Vector2(-509, -6)
+texture = SubResource("GradientTexture2D_nrxeu")
+texture_scale = 6.71
+
+[node name="MechWrapper" parent="." instance=ExtResource("5_hberb")]
+position = Vector2(1152, 2012.69)
+
+[node name="Mech" parent="MechWrapper" instance=ExtResource("9_ldsuh")]
+
+[node name="VirusWrapper" parent="." instance=ExtResource("5_hberb")]
+position = Vector2(1152, 1664)
+
+[node name="Virus" parent="VirusWrapper" instance=ExtResource("10_4dqh2")]
+
+[node name="GameObjects" type="Node2D" parent="."]
+
+[node name="DarkAreas" type="Node2D" parent="GameObjects"]
+
+[node name="DarkArea" parent="GameObjects/DarkAreas" instance=ExtResource("8_n080h")]
+position = Vector2(5504, 1664)
+
+[node name="DarkArea2" parent="GameObjects/DarkAreas" instance=ExtResource("8_n080h")]
+position = Vector2(13824, 640)
+
+[node name="DarkArea3" parent="GameObjects/DarkAreas" instance=ExtResource("8_n080h")]
+position = Vector2(15616, 640)
+
+[node name="DarkArea4" parent="GameObjects/DarkAreas" instance=ExtResource("8_n080h")]
+position = Vector2(15360, -1408)
+
+[node name="DarkArea5" parent="GameObjects/DarkAreas" instance=ExtResource("8_n080h")]
+position = Vector2(13568, -1408)
+
+[node name="FrontDoors" type="Node2D" parent="GameObjects"]
+
+[node name="Doors" type="Node2D" parent="GameObjects"]
+
+[node name="Door" parent="GameObjects/Doors" instance=ExtResource("10_rtgbj")]
+position = Vector2(12160, -1024)
+
+[node name="Door2" parent="GameObjects/Doors" instance=ExtResource("10_rtgbj")]
+position = Vector2(14720, 1024)
+
+[node name="Door3" parent="GameObjects/Doors" instance=ExtResource("10_rtgbj")]
+position = Vector2(16512, -1024)
+
+[node name="Door4" parent="GameObjects/Doors" instance=ExtResource("10_rtgbj")]
+position = Vector2(17792, 1024)
+
+[node name="MechUpgrades" type="Node2D" parent="GameObjects"]
+
+[node name="ChatCanvas" type="CanvasLayer" parent="."]
+
+[node name="GameChat" parent="ChatCanvas" instance=ExtResource("6_pqgey")]
+mouse_filter = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="chat_requested" from="MechWrapper/Mech" to="." method="_on_mech_chat_requested"]
+[connection signal="mech_dead" from="MechWrapper/Mech" to="." method="_on_mech_mech_dead"]
+[connection signal="chat_requested" from="VirusWrapper/Virus" to="." method="_on_virus_chat_requested"]
+[connection signal="minigame_canceled" from="VirusWrapper/Virus" to="." method="_on_virus_minigame_canceled"]
+[connection signal="minigame_completed" from="VirusWrapper/Virus" to="." method="_on_virus_minigame_completed"]
+[connection signal="teleport_to_mech_requested" from="VirusWrapper/Virus" to="." method="_on_virus_teleport_to_mech_requested"]
+[connection signal="object_chosen" from="GameObjects/DarkAreas/DarkArea" to="." method="_on_object_chosen"]
+[connection signal="object_chosen" from="GameObjects/DarkAreas/DarkArea2" to="." method="_on_object_chosen"]
+[connection signal="object_chosen" from="GameObjects/DarkAreas/DarkArea3" to="." method="_on_object_chosen"]
+[connection signal="object_chosen" from="GameObjects/DarkAreas/DarkArea4" to="." method="_on_object_chosen"]
+[connection signal="object_chosen" from="GameObjects/DarkAreas/DarkArea5" to="." method="_on_object_chosen"]
+[connection signal="object_chosen" from="GameObjects/Doors/Door" to="." method="_on_object_chosen"]
+[connection signal="object_chosen" from="GameObjects/Doors/Door2" to="." method="_on_object_chosen"]
+[connection signal="object_chosen" from="GameObjects/Doors/Door3" to="." method="_on_object_chosen"]
+[connection signal="object_chosen" from="GameObjects/Doors/Door4" to="." method="_on_object_chosen"]
+[connection signal="chat_closed" from="ChatCanvas/GameChat" to="." method="_on_game_chat_chat_closed"]

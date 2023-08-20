@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dscy70cidsylo"]
+[gd_scene load_steps=4 format=3 uid="uid://dscy70cidsylo"]
 
 [ext_resource type="Script" path="res://src/virus/virus.gd" id="1_jlccm"]
+[ext_resource type="AudioStream" uid="uid://dtm0527p0emxg" path="res://assets/sounds/camera.ogg" id="2_27ell"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p1nuu"]
 
@@ -18,3 +19,6 @@ script = ExtResource("1_jlccm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_p1nuu")
+
+[node name="MovePlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_27ell")

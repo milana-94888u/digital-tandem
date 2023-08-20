@@ -8,6 +8,7 @@ var captcha: String
 
 
 func _ready() -> void:
+	$VBoxContainer/LineEdit.grab_focus()
 	randomize()
 	var image := captcha_images[randi() % captcha_images.size()]
 	$VBoxContainer/TextureRect.texture = image

@@ -35,7 +35,7 @@ var control_processed := true
 		max_energy = value
 		$UICanvas/MechUI.update_max_energy(value)
 		$FloatingUI.update_max_energy(value)
-@export var energy := 10000:
+@export var energy := 200:
 	set(value):
 		energy = value
 		$UICanvas/MechUI.update_energy(value)
@@ -53,7 +53,7 @@ func _physics_process(_delta: float) -> void:
 	set_animation()
 	move_and_slide()
 	if velocity:
-		self.energy -= int(absf(velocity.x) / 120.0) + (5 if velocity.y > 0 else 0)
+		self.energy -= int(absf(velocity.x) / speed * 5.0) + (5 if velocity.y > 0 else 0)
 
 
 func _process(_delta: float) -> void:
@@ -66,7 +66,7 @@ func _process(_delta: float) -> void:
 
 
 func accelerate(direction) -> void:
-	velocity = velocity.move_toward(speed * direction, acceleration)
+	velocity = velocity.move_toward(speed * direction if energy > 0 else speed * 0.2 * direction, acceleration)
 
 
 func add_friction() -> void:

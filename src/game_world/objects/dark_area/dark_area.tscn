@@ -5,7 +5,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8s36h"]
 resource_local_to_scene = true
-size = Vector2(1920, 1080)
+size = Vector2(1920, 1664)
 
 [sub_resource type="Gradient" id="Gradient_0h6kv"]
 offsets = PackedFloat32Array(0.580087, 1)
@@ -20,11 +20,18 @@ fill_from = Vector2(0.5, 0.5)
 metadata/_snap_enabled = true
 
 [node name="DarkArea" instance=ExtResource("1_1xgud")]
+position = Vector2(960, 832)
 script = ExtResource("1_k4e1t")
+
+[node name="StaticBody2D" parent="." index="0"]
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" parent="StaticBody2D" index="0"]
 shape = SubResource("RectangleShape2D_8s36h")
 
 [node name="Light" type="PointLight2D" parent="." index="1"]
+position = Vector2(0, 2.86102e-05)
+scale = Vector2(1, 1.54074)
 blend_mode = 1
 texture = SubResource("GradientTexture2D_tuk6c")

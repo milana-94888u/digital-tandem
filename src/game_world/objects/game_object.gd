@@ -6,6 +6,7 @@ signal object_chosen(object: Node2D)
 
 
 func _ready() -> void:
+	set_process_input(true)
 	$StaticBody2D.input_pickable = Server.player_info["role"] == Server.PlayerRole.VIRUS
 
 

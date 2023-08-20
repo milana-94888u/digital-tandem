@@ -3,9 +3,11 @@ class_name Mech
 
 
 var active_door: FrontDoor
+var is_charging := false
 
 
 signal chat_requested
+signal mech_dead
 
 
 var control_processed := true
@@ -35,6 +37,8 @@ var run_multiplier := 1.0
 		health = value
 		$UICanvas/MechUI.update_health(value)
 		$FloatingUI.update_health(value)
+		if health < 1:
+			mech_dead.emit()
 
 @export var max_energy := 10000:
 	set(value):
@@ -115,7 +119,8 @@ func set_animation() -> void:
 
 	if is_on_floor():
 		if velocity.x == 0.0:
-			$AnimatedSprite2D.play("idle")
+			if health > 0:
+				$AnimatedSprite2D.play("idle")
 		elif run_multiplier == 1.0:
 			$AnimatedSprite2D.play("walk")
 		else:
